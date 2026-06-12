@@ -1,1 +1,950 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PORT & REUSE — Réemploi local de matériaux BTP</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --forest:    #1A2E1A;
+      --sage:      #4A7C59;
+      --sage-light:#6A9E79;
+      --pale:      #C8D8B0;
+      --sand:      #F5F0E8;
+      --terracotta:#E8602C;
+      --terracotta-dark:#C04E22;
+      --white:     #FFFFFF;
+      --text:      #1A2E1A;
+      --text-muted:#5A6E5A;
+      --radius:    10px;
+      --shadow:    0 4px 24px rgba(26,46,26,.12);
+    }
 
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--sand);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(26,46,26,.95);
+      backdrop-filter: blur(8px);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--pale);
+      letter-spacing: .04em;
+    }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--pale);
+      font-size: .9rem;
+      font-weight: 500;
+      opacity: .8;
+      transition: opacity .2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+    .nav-cta {
+      background: var(--terracotta);
+      color: var(--white) !important;
+      opacity: 1 !important;
+      padding: .45rem 1.1rem;
+      border-radius: 6px;
+      transition: background .2s !important;
+    }
+    .nav-cta:hover { background: var(--terracotta-dark) !important; }
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .burger span { width: 24px; height: 2px; background: var(--pale); border-radius: 2px; transition: all .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--forest);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 100px 5% 60px;
+    }
+    /* Brick pattern SVG background */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='40' viewBox='0 0 80 40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='38' height='18' rx='1' fill='none' stroke='%234A7C59' stroke-width='.5' opacity='.3'/%3E%3Crect x='41' y='1' width='38' height='18' rx='1' fill='none' stroke='%234A7C59' stroke-width='.5' opacity='.3'/%3E%3Crect x='-19' y='21' width='38' height='18' rx='1' fill='none' stroke='%234A7C59' stroke-width='.5' opacity='.3'/%3E%3Crect x='21' y='21' width='38' height='18' rx='1' fill='none' stroke='%234A7C59' stroke-width='.5' opacity='.3'/%3E%3Crect x='61' y='21' width='38' height='18' rx='1' fill='none' stroke='%234A7C59' stroke-width='.5' opacity='.3'/%3E%3C/svg%3E");
+      opacity: .5;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 640px; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--terracotta);
+      background: rgba(232,96,44,.15);
+      padding: .3rem .8rem; border-radius: 4px;
+      margin-bottom: 1.4rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      line-height: 1.08;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 em { color: var(--pale); font-style: normal; }
+    .hero p {
+      font-size: 1.1rem; color: rgba(200,216,176,.8);
+      max-width: 500px; margin-bottom: 2rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--terracotta); color: var(--white);
+      padding: .8rem 1.8rem; border-radius: var(--radius);
+      font-weight: 600; font-size: .95rem;
+      border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary:hover { background: var(--terracotta-dark); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--pale);
+      padding: .8rem 1.8rem; border-radius: var(--radius);
+      font-weight: 600; font-size: .95rem;
+      border: 2px solid rgba(200,216,176,.4); cursor: pointer;
+      transition: border-color .2s, transform .15s;
+    }
+    .btn-outline:hover { border-color: var(--pale); transform: translateY(-1px); }
+
+    /* Floating map card (hero decoration) */
+    .hero-map {
+      position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+      width: min(420px, 42vw);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(200,216,176,.2);
+      border-radius: 16px;
+      padding: 1.2rem;
+      backdrop-filter: blur(10px);
+    }
+    .map-header { display: flex; align-items: center; gap: .6rem; margin-bottom: 1rem; }
+    .map-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .map-dot.r { background: #ff5f57; }
+    .map-dot.y { background: #febc2e; }
+    .map-dot.g { background: #28c840; }
+    .map-title { font-size: .78rem; color: rgba(200,216,176,.5); margin-left: auto; font-weight: 500; }
+    .map-canvas {
+      width: 100%; aspect-ratio: 4/3; border-radius: 10px;
+      background: #1e3a2a;
+      position: relative; overflow: hidden;
+    }
+    /* Grid lines */
+    .map-canvas::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(74,124,89,.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,124,89,.3) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    /* Roads */
+    .road-h, .road-v {
+      position: absolute; background: rgba(74,124,89,.5);
+    }
+    .road-h { height: 3px; left: 0; right: 0; }
+    .road-v { width: 3px; top: 0; bottom: 0; }
+    /* Pins */
+    .pin {
+      position: absolute;
+      width: 28px; height: 28px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      display: flex; align-items: center; justify-content: center;
+      animation: pinBounce 2s ease-in-out infinite;
+      cursor: pointer;
+    }
+    .pin::after {
+      content: attr(data-icon);
+      transform: rotate(45deg);
+      font-size: .75rem;
+    }
+    .pin.terracotta { background: var(--terracotta); box-shadow: 0 4px 12px rgba(232,96,44,.5); }
+    .pin.sage { background: var(--sage); box-shadow: 0 4px 12px rgba(74,124,89,.5); }
+    .pin.pale { background: var(--pale); box-shadow: 0 4px 12px rgba(200,216,176,.5); }
+    @keyframes pinBounce {
+      0%, 100% { transform: rotate(-45deg) translateY(0); }
+      50% { transform: rotate(-45deg) translateY(-4px); }
+    }
+    .pin-label {
+      position: absolute;
+      background: var(--forest);
+      color: var(--pale);
+      font-size: .6rem; font-weight: 600;
+      padding: .2rem .5rem; border-radius: 4px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--pale);
+      display: flex; justify-content: center; gap: 0;
+    }
+    .stat {
+      flex: 1; max-width: 240px;
+      text-align: center;
+      padding: 1.8rem 1rem;
+      border-right: 1px solid rgba(74,124,89,.2);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem; font-weight: 900;
+      color: var(--forest);
+      line-height: 1;
+    }
+    .stat-label { font-size: .78rem; color: var(--text-muted); margin-top: .3rem; font-weight: 500; }
+
+    /* ── SECTIONS ── */
+    section { padding: 80px 5%; }
+    .section-eyebrow {
+      font-size: .75rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+      color: var(--sage); margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      color: var(--forest); line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub { color: var(--text-muted); max-width: 560px; font-size: 1rem; }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: var(--white); }
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+    .step { position: relative; }
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem; font-weight: 900;
+      color: var(--pale);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+    .step-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--sage); display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 1rem;
+    }
+    .step h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: .4rem; color: var(--forest); }
+    .step p { font-size: .9rem; color: var(--text-muted); }
+    .step-connector {
+      position: absolute; top: 24px; right: -1rem;
+      width: 2rem; height: 2px;
+      background: linear-gradient(to right, var(--pale), transparent);
+    }
+
+    /* ── LISTINGS ── */
+    .listings { background: var(--sand); }
+    .listings-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+    .filter-bar { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .filter-btn {
+      padding: .4rem 1rem; border-radius: 999px;
+      border: 1.5px solid var(--pale); background: transparent;
+      font-size: .8rem; font-weight: 600; color: var(--text-muted);
+      cursor: pointer; transition: all .2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      border-color: var(--sage); background: var(--sage); color: var(--white);
+    }
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--white); border-radius: 14px;
+      overflow: hidden; box-shadow: var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+      cursor: pointer;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 8px 36px rgba(26,46,26,.18); }
+    .card-img {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+    }
+    .card-body { padding: 1.1rem 1.2rem 1.3rem; }
+    .card-tags { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: .7rem; }
+    .tag {
+      font-size: .68rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+      padding: .2rem .6rem; border-radius: 4px;
+    }
+    .tag-cat { background: rgba(74,124,89,.12); color: var(--sage); }
+    .tag-dispo { background: rgba(200,216,176,.4); color: var(--forest); }
+    .card h3 { font-size: 1rem; font-weight: 600; color: var(--forest); margin-bottom: .3rem; }
+    .card-meta { display: flex; align-items: center; gap: 1rem; margin-top: .8rem; font-size: .8rem; color: var(--text-muted); }
+    .card-meta span { display: flex; align-items: center; gap: .3rem; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1rem; }
+    .card-price { font-weight: 700; color: var(--forest); font-size: .95rem; }
+    .card-price span { color: var(--terracotta); }
+    .btn-sm {
+      background: var(--sage); color: var(--white);
+      padding: .4rem 1rem; border-radius: 6px; font-size: .8rem; font-weight: 600;
+      border: none; cursor: pointer; transition: background .2s;
+    }
+    .btn-sm:hover { background: var(--sage-light); }
+
+    /* ── PUBLISH CTA ── */
+    .publish-cta {
+      background: var(--forest);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .publish-cta .section-title { color: var(--white); margin-bottom: .5rem; }
+    .publish-cta .section-sub { color: var(--pale); opacity: .8; }
+    .publish-form { background: rgba(255,255,255,.06); border: 1px solid rgba(200,216,176,.2); border-radius: 16px; padding: 2rem; min-width: 320px; flex: 1; max-width: 480px; }
+    .form-row { margin-bottom: 1rem; }
+    label { display: block; font-size: .8rem; font-weight: 600; color: var(--pale); margin-bottom: .4rem; }
+    input, select, textarea {
+      width: 100%; padding: .65rem .9rem; border-radius: 8px;
+      border: 1.5px solid rgba(200,216,176,.25);
+      background: rgba(255,255,255,.08); color: var(--white);
+      font-family: 'Inter', sans-serif; font-size: .9rem;
+      outline: none; transition: border-color .2s;
+    }
+    input::placeholder, textarea::placeholder { color: rgba(200,216,176,.4); }
+    input:focus, select:focus, textarea:focus { border-color: var(--sage-light); }
+    select option { background: var(--forest); }
+    textarea { resize: vertical; min-height: 80px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+
+    /* ── MAP SECTION ── */
+    .map-section { background: var(--white); }
+    .map-big {
+      width: 100%; height: 420px; border-radius: 16px;
+      background: #1e3a2a; margin-top: 2.5rem;
+      position: relative; overflow: hidden;
+    }
+    .map-big::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(74,124,89,.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74,124,89,.25) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    .map-overlay {
+      position: absolute; top: 1.5rem; left: 1.5rem;
+      background: rgba(26,46,26,.9); border: 1px solid rgba(200,216,176,.2);
+      border-radius: 12px; padding: 1.2rem; min-width: 220px;
+      backdrop-filter: blur(8px);
+    }
+    .map-overlay h4 { color: var(--pale); font-size: .85rem; font-weight: 700; margin-bottom: .8rem; }
+    .map-legend-item { display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem; font-size: .78rem; color: rgba(200,216,176,.7); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ── IMPACT ── */
+    .impact { background: var(--pale); }
+    .impact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .impact-card {
+      background: var(--white); border-radius: 14px; padding: 1.5rem;
+      display: flex; flex-direction: column; gap: .5rem;
+      box-shadow: var(--shadow);
+    }
+    .impact-icon { font-size: 2rem; }
+    .impact-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--forest); line-height: 1; }
+    .impact-desc { font-size: .85rem; color: var(--text-muted); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--sand); }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .testi-card { background: var(--white); border-radius: 14px; padding: 1.5rem; box-shadow: var(--shadow); }
+    .testi-quote { font-size: .95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.2rem; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: .8rem; }
+    .testi-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .testi-name { font-weight: 600; font-size: .85rem; color: var(--forest); }
+    .testi-role { font-size: .75rem; color: var(--text-muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest);
+      padding: 60px 5% 30px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(200,216,176,.15); }
+    .footer-brand { }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--pale); margin-bottom: .8rem; }
+    .footer-logo span { color: var(--terracotta); }
+    .footer-tagline { font-size: .85rem; color: rgba(200,216,176,.5); line-height: 1.5; max-width: 220px; }
+    .footer-col h4 { font-size: .8rem; font-weight: 700; color: var(--pale); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .footer-col a { font-size: .85rem; color: rgba(200,216,176,.5); transition: color .2s; }
+    .footer-col a:hover { color: var(--pale); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 1.5rem; flex-wrap: wrap; gap: 1rem; }
+    .footer-copy { font-size: .78rem; color: rgba(200,216,176,.3); }
+    .footer-badges { display: flex; gap: .6rem; }
+    .badge { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; padding: .3rem .7rem; border-radius: 4px; }
+    .badge-loi { background: rgba(74,124,89,.2); color: var(--pale); }
+    .badge-rgpd { background: rgba(232,96,44,.15); color: var(--terracotta); }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(26,46,26,.7); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: opacity .25s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--white); border-radius: 18px;
+      padding: 2.5rem; max-width: 480px; width: 90%;
+      transform: translateY(20px); transition: transform .25s;
+      max-height: 90vh; overflow-y: auto;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+    .modal-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--forest); margin-bottom: .4rem; }
+    .modal-sub { font-size: .85rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .modal-form .form-row { margin-bottom: .9rem; }
+    .modal-form input, .modal-form select, .modal-form textarea { background: var(--sand); color: var(--forest); border-color: var(--pale); }
+    .modal-form label { color: var(--text); }
+    .modal-form input::placeholder, .modal-form textarea::placeholder { color: rgba(26,46,26,.35); }
+    .modal-close { position: absolute; top: 1.2rem; right: 1.2rem; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-muted); }
+    .modal { position: relative; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
+      background: var(--forest); color: var(--pale);
+      padding: 1rem 1.5rem; border-radius: 12px; font-size: .9rem;
+      box-shadow: var(--shadow); display: flex; align-items: center; gap: .7rem;
+      transform: translateY(80px); opacity: 0; transition: all .35s;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast-icon { font-size: 1.2rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-map { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .publish-cta { flex-direction: column; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--forest); padding: 1.5rem 5%; }
+      .burger { display: flex; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat { min-width: 50%; border-bottom: 1px solid rgba(74,124,89,.2); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row-2 { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) { .pin { animation: none; } }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav id="navbar">
+  <div class="nav-logo">PORT <span>&</span> REUSE</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#comment">Comment ça marche</a></li>
+    <li><a href="#annonces">Annonces</a></li>
+    <li><a href="#carte">Carte</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#publier" class="nav-cta">Publier un lot</a></li>
+  </ul>
+  <div class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="accueil">
+  <div class="hero-content">
+    <span class="hero-eyebrow">🌱 Économie circulaire BTP</span>
+    <h1>Les matériaux de votre <em>chantier</em> ont une seconde vie</h1>
+    <p>PORT & REUSE connecte artisans, particuliers et PME pour échanger des matériaux réemployables. Moins de déchets, plus de proximité.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openModal('search')">🔍 Trouver des matériaux</button>
+      <button class="btn-outline" onclick="openModal('publish')">📦 Publier un lot</button>
+    </div>
+  </div>
+
+  <!-- Floating map decoration -->
+  <div class="hero-map" aria-hidden="true">
+    <div class="map-header">
+      <div class="map-dot r"></div>
+      <div class="map-dot y"></div>
+      <div class="map-dot g"></div>
+      <span class="map-title">Île-de-France · 47 lots actifs</span>
+    </div>
+    <div class="map-canvas" id="heroMap">
+      <!-- Roads -->
+      <div class="road-h" style="top:33%"></div>
+      <div class="road-h" style="top:66%"></div>
+      <div class="road-v" style="left:33%"></div>
+      <div class="road-v" style="left:66%"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STATS BAR ── -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num" data-target="247">0</div>
+    <div class="stat-label">Lots disponibles</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" data-target="1340">0</div>
+    <div class="stat-label">Utilisateurs actifs</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" data-target="18">0</div>
+    <div class="stat-label">Tonnes de déchets évitées</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num" data-target="92">0</div>
+    <div class="stat-label">% d'échanges locaux (< 20 km)</div>
+  </div>
+</div>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how" id="comment">
+  <div class="section-eyebrow">Mode d'emploi</div>
+  <h2 class="section-title">Simple comme un coup de fil entre voisins</h2>
+  <p class="section-sub">Trois étapes suffisent pour donner une seconde vie à vos matériaux ou en trouver près de chez vous.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-icon">📝</div>
+      <h3>Créez votre compte</h3>
+      <p>Inscription en 2 minutes. Particulier, artisan ou PME — aucun abonnement requis.</p>
+      <div class="step-connector"></div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-icon">📸</div>
+      <h3>Publiez ou recherchez</h3>
+      <p>Déposez un lot avec photos, catégorie et localisation. Ou parcourez les annonces proches de votre chantier.</p>
+      <div class="step-connector"></div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-icon">🤝</div>
+      <h3>Contactez & récupérez</h3>
+      <p>Messagerie intégrée, échange direct. Vous organisez le transport entre vous, sans intermédiaire.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── ANNONCES ── -->
+<section class="listings" id="annonces">
+  <div class="listings-header">
+    <div>
+      <div class="section-eyebrow">Annonces récentes</div>
+      <h2 class="section-title">Matériaux disponibles près de vous</h2>
+    </div>
+    <div>
+      <div class="filter-bar" id="filters">
+        <button class="filter-btn active" data-filter="all">Tout</button>
+        <button class="filter-btn" data-filter="bois">🪵 Bois</button>
+        <button class="filter-btn" data-filter="brique">🧱 Briques</button>
+        <button class="filter-btn" data-filter="métal">🔩 Métal</button>
+        <button class="filter-btn" data-filter="plomberie">🚿 Plomberie</button>
+        <button class="filter-btn" data-filter="isolation">🧶 Isolation</button>
+      </div>
+    </div>
+  </div>
+  <div class="cards-grid" id="cardsGrid"></div>
+</section>
+
+<!-- ── PUBLISH CTA ── -->
+<section class="publish-cta" id="publier">
+  <div>
+    <div class="section-eyebrow" style="color:var(--pale);opacity:.6">Vous avez des matériaux ?</div>
+    <h2 class="section-title">Publiez un lot en moins de 3 minutes</h2>
+    <p class="section-sub">Vos matériaux inutilisés peuvent servir à un voisin, un artisan, une association. Zéro commission, zéro logistique imposée.</p>
+  </div>
+  <div class="publish-form">
+    <form id="publishForm" onsubmit="handlePublish(event)">
+      <div class="form-row">
+        <label>Titre du lot</label>
+        <input type="text" placeholder="Ex : 45 briques pleines 20×10 cm" required />
+      </div>
+      <div class="form-row-2">
+        <div class="form-row" style="margin:0">
+          <label>Catégorie</label>
+          <select>
+            <option>Briques / Parpaings</option>
+            <option>Bois</option>
+            <option>Métal</option>
+            <option>Plomberie</option>
+            <option>Isolation</option>
+            <option>Carrelage</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="form-row" style="margin:0">
+          <label>État</label>
+          <select>
+            <option>Bon état</option>
+            <option>État correct</option>
+            <option>À rénover</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Localisation</label>
+        <input type="text" placeholder="Ville ou code postal" required />
+      </div>
+      <div class="form-row">
+        <label>Description</label>
+        <textarea placeholder="Dimensions, quantités, conditions de récupération…"></textarea>
+      </div>
+      <div class="form-row">
+        <label>Prix</label>
+        <select>
+          <option>Gratuit (don)</option>
+          <option>Prix libre</option>
+          <option>À négocier</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%">Publier mon lot →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── MAP ── -->
+<section class="map-section" id="carte">
+  <div class="section-eyebrow">Géolocalisation</div>
+  <h2 class="section-title">Échanges de proximité en Île-de-France</h2>
+  <p class="section-sub">La géolocalisation favorise les circuits courts. Moins de transport = moins d'empreinte carbone.</p>
+  <div class="map-big" id="bigMap">
+    <div class="map-overlay">
+      <h4>Légende</h4>
+      <div class="map-legend-item"><div class="legend-dot" style="background:var(--terracotta)"></div> Lot disponible</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:var(--sage)"></div> Échange en cours</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:var(--pale)"></div> Lot réservé</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── IMPACT ── -->
+<section class="impact" id="impact">
+  <div class="section-eyebrow">Impact environnemental</div>
+  <h2 class="section-title">Chaque échange compte</h2>
+  <p class="section-sub">Le BTP produit 46 millions de tonnes de déchets par an en France. PORT & REUSE s'attaque aux petits chantiers, souvent oubliés des solutions existantes.</p>
+  <div class="impact-grid">
+    <div class="impact-card">
+      <div class="impact-icon">♻️</div>
+      <div class="impact-num">18 t</div>
+      <div class="impact-desc">de matériaux détournés de la déchetterie depuis le lancement</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🚗</div>
+      <div class="impact-num">8 km</div>
+      <div class="impact-desc">distance moyenne d'un échange — favorise le circuit très court</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">💰</div>
+      <div class="impact-num">340 €</div>
+      <div class="impact-desc">économisés en moyenne par utilisateur sur l'achat de matériaux</div>
+    </div>
+    <div class="impact-card">
+      <div class="impact-icon">🌍</div>
+      <div class="impact-num">-42%</div>
+      <div class="impact-desc">d'émissions CO₂ vs achat neuf + évacuation en benne</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TÉMOIGNAGES ── -->
+<section class="testimonials">
+  <div class="section-eyebrow">Ils témoignent</div>
+  <h2 class="section-title">Ce qu'en disent les utilisateurs</h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <p class="testi-quote">« J'avais 200 tuiles après réfection de toiture. En 48h quelqu'un du village d'à côté les a récupérées. Simple et rapide. »</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:#C8D8B0">🧑‍🔧</div>
+        <div><div class="testi-name">Marc D.</div><div class="testi-role">Artisan couvreur, 91</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-quote">« On a trouvé des portes intérieures en bois massif pour notre rénovation. Jamais on n'aurait pu se les offrir neuves. »</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:#F5F0E8">👩</div>
+        <div><div class="testi-name">Sophie L.</div><div class="testi-role">Particulière, Paris 20e</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <p class="testi-quote">« Notre PME récupère régulièrement des matériaux de second œuvre. On estime économiser ~2 000 € par trimestre. »</p>
+      <div class="testi-author">
+        <div class="testi-avatar" style="background:#4A7C59">👷</div>
+        <div><div class="testi-name">Karim B.</div><div class="testi-role">Dirigeant PME BTP, 77</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">PORT <span>&</span> REUSE</div>
+      <p class="footer-tagline">Plateforme de réemploi local pour les matériaux du BTP. Projet EFREI ING2 – 2025.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Plateforme</h4>
+      <ul>
+        <li><a href="#annonces">Parcourir les lots</a></li>
+        <li><a href="#publier">Publier un matériau</a></li>
+        <li><a href="#carte">Carte des échanges</a></li>
+        <li><a href="#comment">Comment ça marche</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>À propos</h4>
+      <ul>
+        <li><a href="#">Notre mission</a></li>
+        <li><a href="#">Loi AGEC 2020</a></li>
+        <li><a href="#">Économie circulaire</a></li>
+        <li><a href="#">Partenaires</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Politique RGPD</a></li>
+        <li><a href="#">CGU</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 PORT & REUSE — Projet académique EFREI. Mentor : O. Girinsky · Client : B. Hartemann (Allianz)</span>
+    <div class="footer-badges">
+      <span class="badge badge-loi">Loi AGEC</span>
+      <span class="badge badge-rgpd">RGPD</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✅</span>
+  <span id="toastMsg">Lot publié avec succès !</span>
+</div>
+
+<script>
+  /* ── DATA ── */
+  const listings = [
+    { id:1, emoji:'🧱', bg:'#e8d5c0', title:'Lot de 80 briques pleines 20×10 cm', cat:'brique', catLabel:'Briques', dispo:'Disponible', price:'Gratuit', dist:'2.4 km', date:'Il y a 2h' },
+    { id:2, emoji:'🪵', bg:'#d5c4a0', title:'Chutes de parquet chêne massif 20 m²', cat:'bois', catLabel:'Bois', dispo:'Disponible', price:'50 €', dist:'5.1 km', date:'Il y a 5h' },
+    { id:3, emoji:'🔩', bg:'#c8d0d8', title:'Profilés acier galvanisé 6 m (×12)', cat:'métal', catLabel:'Métal', dispo:'Réservé', price:'Prix libre', dist:'3.7 km', date:'Hier' },
+    { id:4, emoji:'🚿', bg:'#c0d8d8', title:'Robinetterie cuisine neuve déballée ×3', cat:'plomberie', catLabel:'Plomberie', dispo:'Disponible', price:'Gratuit', dist:'1.2 km', date:'Il y a 1h' },
+    { id:5, emoji:'🧶', bg:'#d8c8d0', title:'Rouleaux laine de verre 100mm (×8)', cat:'isolation', catLabel:'Isolation', dispo:'Disponible', price:'30 €', dist:'7.8 km', date:'Il y a 3h' },
+    { id:6, emoji:'🪟', bg:'#c0c8d0', title:'Double vitrage 120×80 cm (×4, bon état)', cat:'bois', catLabel:'Menuiserie', dispo:'Disponible', price:'À négocier', dist:'4.3 km', date:'Il y a 8h' },
+  ];
+
+  /* ── RENDER CARDS ── */
+  function renderCards(filter) {
+    const grid = document.getElementById('cardsGrid');
+    const filtered = filter === 'all' ? listings : listings.filter(l => l.cat === filter);
+    grid.innerHTML = filtered.map(l => `
+      <div class="card" onclick="openModal('contact', ${l.id})">
+        <div class="card-img" style="background:${l.bg}">${l.emoji}</div>
+        <div class="card-body">
+          <div class="card-tags">
+            <span class="tag tag-cat">${l.catLabel}</span>
+            <span class="tag tag-dispo" style="${l.dispo==='Réservé'?'background:rgba(232,96,44,.15);color:var(--terracotta)':''}">${l.dispo}</span>
+          </div>
+          <h3>${l.title}</h3>
+          <div class="card-meta">
+            <span>📍 ${l.dist}</span>
+            <span>🕒 ${l.date}</span>
+          </div>
+          <div class="card-footer">
+            <div class="card-price"><span>${l.price}</span></div>
+            <button class="btn-sm" onclick="event.stopPropagation();openModal('contact',${l.id})">Contacter</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+  renderCards('all');
+
+  /* ── FILTERS ── */
+  document.getElementById('filters').addEventListener('click', e => {
+    if (!e.target.classList.contains('filter-btn')) return;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    renderCards(e.target.dataset.filter);
+  });
+
+  /* ── COUNTER ANIMATION ── */
+  function animateCounter(el, target) {
+    let start = 0, duration = 1800;
+    const step = timestamp => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target).toLocaleString('fr-FR');
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('[data-target]').forEach(el => {
+          animateCounter(el, +el.dataset.target);
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: .3 });
+  observer.observe(document.querySelector('.stats-bar'));
+
+  /* ── MAP PINS ── */
+  function createPins(containerId, count) {
+    const container = document.getElementById(containerId);
+    const pins = [
+      { x:20, y:25, cls:'terracotta', icon:'🧱', label:'Briques – 2.4km', delay:0 },
+      { x:55, y:45, cls:'sage', icon:'🪵', delay:.4 },
+      { x:75, y:20, cls:'terracotta', icon:'🔩', label:'Métal – 5km', delay:.7 },
+      { x:35, y:70, cls:'pale', icon:'🚿', delay:1 },
+      { x:80, y:65, cls:'sage', icon:'🧶', delay:.2 },
+      { x:50, y:15, cls:'terracotta', icon:'🪟', label:'Vitrage – 4km', delay:.9 },
+    ];
+    pins.forEach((p, i) => {
+      const pin = document.createElement('div');
+      pin.className = `pin ${p.cls}`;
+      pin.setAttribute('data-icon', p.icon);
+      pin.style.cssText = `left:${p.x}%;top:${p.y}%;animation-delay:${p.delay}s`;
+      if (p.label) {
+        const lbl = document.createElement('div');
+        lbl.className = 'pin-label';
+        lbl.textContent = p.label;
+        lbl.style.cssText = 'bottom:120%;left:50%;transform:translateX(-50%);';
+        pin.appendChild(lbl);
+      }
+      container.appendChild(pin);
+    });
+  }
+  createPins('heroMap', 6);
+  createPins('bigMap', 6);
+
+  /* ── BURGER MENU ── */
+  document.getElementById('burger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  /* ── MODAL ── */
+  const publishHTML = `
+    <h2 class="modal-title">Publier un lot</h2>
+    <p class="modal-sub">Votre annonce sera visible immédiatement sur la carte et dans les résultats.</p>
+    <form class="modal-form" onsubmit="handlePublish(event)">
+      <div class="form-row"><label>Titre</label><input type="text" placeholder="Ex : 45 briques pleines 20×10 cm" required /></div>
+      <div class="form-row-2">
+        <div class="form-row" style="margin:0"><label>Catégorie</label><select><option>Briques / Parpaings</option><option>Bois</option><option>Métal</option><option>Plomberie</option><option>Isolation</option><option>Autre</option></select></div>
+        <div class="form-row" style="margin:0"><label>État</label><select><option>Bon état</option><option>État correct</option><option>À rénover</option></select></div>
+      </div>
+      <div class="form-row"><label>Localisation</label><input type="text" placeholder="Ville ou code postal" required /></div>
+      <div class="form-row"><label>Description</label><textarea placeholder="Dimensions, quantités…"></textarea></div>
+      <div class="form-row"><label>Prix</label><select><option>Gratuit (don)</option><option>Prix libre</option><option>À négocier</option></select></div>
+      <button type="submit" class="btn-primary" style="width:100%;margin-top:.5rem">Publier →</button>
+    </form>`;
+
+  const searchHTML = `
+    <h2 class="modal-title">Trouver des matériaux</h2>
+    <p class="modal-sub">Recherchez par type, localisation et disponibilité.</p>
+    <form class="modal-form" onsubmit="handleSearch(event)">
+      <div class="form-row"><label>Mot-clé</label><input type="text" placeholder="Brique, parquet, radiateur…" /></div>
+      <div class="form-row"><label>Localisation</label><input type="text" placeholder="Ville ou code postal" /></div>
+      <div class="form-row-2">
+        <div class="form-row" style="margin:0"><label>Catégorie</label><select><option>Toutes</option><option>Briques / Parpaings</option><option>Bois</option><option>Métal</option><option>Plomberie</option><option>Isolation</option></select></div>
+        <div class="form-row" style="margin:0"><label>Distance max</label><select><option>5 km</option><option>10 km</option><option>20 km</option><option>50 km</option></select></div>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;margin-top:.5rem">🔍 Rechercher</button>
+    </form>`;
+
+  function contactHTML(id) {
+    const lot = listings.find(l => l.id === id) || listings[0];
+    return `
+      <h2 class="modal-title">Contacter le donateur</h2>
+      <p class="modal-sub">Lot : <strong>${lot.title}</strong></p>
+      <form class="modal-form" onsubmit="handleContact(event)">
+        <div class="form-row"><label>Votre nom</label><input type="text" placeholder="Prénom Nom" required /></div>
+        <div class="form-row"><label>Votre email</label><input type="email" placeholder="vous@email.com" required /></div>
+        <div class="form-row"><label>Message</label><textarea placeholder="Bonjour, je suis intéressé par votre lot…" required></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%;margin-top:.5rem">Envoyer le message →</button>
+      </form>`;
+  }
+
+  function openModal(type, id) {
+    const overlay = document.getElementById('modalOverlay');
+    const content = document.getElementById('modalContent');
+    if (type === 'publish') content.innerHTML = publishHTML;
+    else if (type === 'search') content.innerHTML = searchHTML;
+    else if (type === 'contact') content.innerHTML = contactHTML(id);
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModalBtn();
+  }
+  function closeModalBtn() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+  /* ── FORM HANDLERS ── */
+  function handlePublish(e) {
+    e.preventDefault(); closeModalBtn();
+    showToast('✅', 'Lot publié avec succès !');
+  }
+  function handleSearch(e) {
+    e.preventDefault(); closeModalBtn();
+    showToast('🔍', 'Résultats mis à jour');
+  }
+  function handleContact(e) {
+    e.preventDefault(); closeModalBtn();
+    showToast('📬', 'Message envoyé !');
+  }
+  document.getElementById('publishForm')?.addEventListener('submit', handlePublish);
+
+  /* ── TOAST ── */
+  function showToast(icon, msg) {
+    const t = document.getElementById('toast');
+    document.querySelector('.toast-icon').textContent = icon;
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  /* ── SCROLL NAV ── */
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.boxShadow = window.scrollY > 20 ? '0 4px 24px rgba(0,0,0,.3)' : '';
+  });
+</script>
+</body>
+</html>
