@@ -151,52 +151,6 @@
     .toast{position:fixed;bottom:2rem;right:2rem;z-index:300;background:var(--forest);color:var(--pale);padding:1rem 1.5rem;border-radius:12px;font-size:.9rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:.7rem;transform:translateY(80px);opacity:0;transition:all .35s;}
     .toast.show{transform:translateY(0);opacity:1;}
 
-    /* ── CALENDAR ── */
-    .cal-tool-tabs { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem; }
-    .cal-tool-tab { padding:.4rem 1rem; border-radius:999px; border:1.5px solid var(--pale); background:transparent; font-size:.78rem; font-weight:600; color:var(--text-muted); cursor:pointer; transition:all .2s; font-family:'Inter',sans-serif; white-space:nowrap; }
-    .cal-tool-tab.active,.cal-tool-tab:hover { border-color:var(--sage); background:var(--sage); color:var(--white); }
-
-    .cal-wrap { }
-    .cal-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem; }
-    .cal-month-label { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:700; color:var(--forest); }
-    .cal-nav-btn { width:34px; height:34px; border-radius:50%; border:1.5px solid var(--pale); background:transparent; font-size:1.1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--text-muted); transition:all .2s; }
-    .cal-nav-btn:hover { border-color:var(--sage); color:var(--sage); background:rgba(74,124,89,.06); }
-
-    .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; }
-    .cal-hd { text-align:center; font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--text-muted); padding:.35rem 0; }
-    .cal-day { min-height:44px; display:flex; align-items:center; justify-content:center; border-radius:9px; font-size:.82rem; cursor:pointer; border:1.5px solid transparent; transition:all .15s; font-weight:500; color:var(--text); position:relative; }
-    .cal-day:hover:not(.cal-empty):not(.cal-past) { border-color:var(--sage-light); background:rgba(74,124,89,.08); }
-    .cal-empty { cursor:default; background:transparent !important; }
-    .cal-past { color:#bbb; cursor:default; }
-    .cal-today { border-color:var(--forest) !important; font-weight:700; color:var(--forest) !important; }
-    .cal-booked { background:var(--sage) !important; color:var(--white) !important; border-color:var(--sage) !important; }
-    .cal-pending { background:rgba(245,166,35,.88) !important; color:var(--white) !important; border-color:#e09b1a !important; }
-    .cal-blocked { background:rgba(232,96,44,.85) !important; color:var(--white) !important; border-color:var(--terracotta) !important; }
-    .cal-multi-dot { position:absolute; bottom:4px; left:50%; transform:translateX(-50%); display:flex; gap:2px; }
-    .cal-multi-dot span { width:4px; height:4px; border-radius:50%; }
-
-    .cal-legend { display:flex; gap:1.2rem; flex-wrap:wrap; margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--sand); }
-    .cal-leg-item { display:flex; align-items:center; gap:.4rem; font-size:.74rem; color:var(--text-muted); }
-    .cal-leg-dot { width:12px; height:12px; border-radius:4px; flex-shrink:0; }
-
-    .cal-detail-card { background:var(--sand); border-radius:12px; padding:1.2rem 1.3rem; margin-top:1.2rem; border-left:3px solid var(--sage); }
-    .cal-detail-date { font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); margin-bottom:.5rem; }
-    .cal-detail-tool { font-weight:700; color:var(--forest); font-size:.95rem; margin-bottom:.3rem; }
-    .cal-detail-row { font-size:.83rem; color:var(--text-muted); margin-bottom:.2rem; }
-    .cal-detail-card.blocked-card { border-left-color:var(--terracotta); }
-
-    .upcoming-list { display:flex; flex-direction:column; gap:.8rem; }
-    .upcoming-item { display:flex; align-items:center; gap:1rem; padding:.9rem 1rem; background:var(--sand); border-radius:10px; }
-    .upcoming-date-block { text-align:center; background:var(--forest); color:var(--pale); border-radius:8px; padding:.4rem .7rem; min-width:46px; flex-shrink:0; }
-    .upcoming-date-day { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:900; line-height:1; }
-    .upcoming-date-mon { font-size:.6rem; text-transform:uppercase; letter-spacing:.06em; opacity:.7; }
-    .upcoming-info { flex:1; }
-    .upcoming-tool { font-weight:600; font-size:.88rem; color:var(--forest); }
-    .upcoming-tenant { font-size:.78rem; color:var(--text-muted); margin-top:.15rem; }
-    .upcoming-amount { font-weight:700; color:var(--terracotta); font-size:.88rem; white-space:nowrap; }
-
-    .cal-empty-msg { text-align:center; padding:2rem; color:var(--text-muted); font-size:.88rem; }
-
     /* RESPONSIVE */
     @media(max-width:768px){
       .dash-layout{grid-template-columns:1fr;}
@@ -212,8 +166,8 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.">PORT <span>&</span> REUSE</a>
-  <a class="nav-back" href="index.html">← Retour au site</a>
+  <a class="nav-logo" href="port-reuse-final.html">PORT <span>&</span> REUSE</a>
+  <a class="nav-back" href="port-reuse-final.html">← Retour au site</a>
 </nav>
 
 <!-- ── AUTH (connexion / inscription) ── -->
@@ -328,9 +282,6 @@
       <div class="dash-nav-item" onclick="showSection('avis')" data-section="avis">
         <span class="nav-icon">⭐</span> Mes avis
       </div>
-      <div class="dash-nav-item" onclick="showSection('disponibilite');renderCalendar()" data-section="disponibilite">
-        <span class="nav-icon">📆</span> Disponibilité
-      </div>
 
       <div class="dash-logout" onclick="handleLogout()">
         <span>🚪</span> Se déconnecter
@@ -417,7 +368,7 @@
         <div class="dash-card">
           <div class="dash-card-header">
             <div class="dash-card-title">3 outils publiés</div>
-            <button class="btn-xs btn-xs-primary" onclick="window.location='index.html#preter'">+ Ajouter un outil</button>
+            <button class="btn-xs btn-xs-primary" onclick="window.location='port-reuse-final.html#preter'">+ Ajouter un outil</button>
           </div>
           <table>
             <thead><tr><th>Outil</th><th>Catégorie</th><th>Prix/j</th><th>Caution</th><th>Statut</th><th>Actions</th></tr></thead>
@@ -642,50 +593,6 @@
         </div>
       </div>
 
-      <!-- DISPONIBILITÉ -->
-      <div class="dash-section" id="section-disponibilite">
-        <div class="dash-page-title">Disponibilité</div>
-        <div class="dash-page-sub">Visualisez et gérez les créneaux de location. Cliquez sur un jour libre pour le bloquer.</div>
-
-        <!-- Tool filter tabs -->
-        <div class="cal-tool-tabs" id="calToolTabs">
-          <button class="cal-tool-tab active" data-tool="all" onclick="selectCalTool(this,'all')">Tous les outils</button>
-          <button class="cal-tool-tab" data-tool="marteau" onclick="selectCalTool(this,'marteau')">🔨 Marteau piqueur</button>
-          <button class="cal-tool-tab" data-tool="echafaudage" onclick="selectCalTool(this,'echafaudage')">🏗️ Échafaudage</button>
-          <button class="cal-tool-tab" data-tool="betoniere" onclick="selectCalTool(this,'betoniere')">⛏️ Bétonière</button>
-        </div>
-
-        <!-- Calendar card -->
-        <div class="dash-card">
-          <div class="cal-header">
-            <button class="cal-nav-btn" onclick="changeCalMonth(-1)">‹</button>
-            <div class="cal-month-label" id="calMonthLabel">—</div>
-            <button class="cal-nav-btn" onclick="changeCalMonth(1)">›</button>
-          </div>
-
-          <div class="cal-grid" id="calGrid"></div>
-
-          <!-- Day detail panel -->
-          <div id="calDetailPanel" style="display:none"></div>
-
-          <!-- Legend -->
-          <div class="cal-legend">
-            <div class="cal-leg-item"><span class="cal-leg-dot" style="background:var(--sage)"></span>Loué (confirmé)</div>
-            <div class="cal-leg-item"><span class="cal-leg-dot" style="background:#f5a623"></span>En attente</div>
-            <div class="cal-leg-item"><span class="cal-leg-dot" style="background:var(--terracotta)"></span>Bloqué par vous</div>
-            <div class="cal-leg-item"><span class="cal-leg-dot" style="border:2px solid var(--forest);background:transparent"></span>Aujourd'hui</div>
-          </div>
-        </div>
-
-        <!-- Upcoming reservations -->
-        <div class="dash-card">
-          <div class="dash-card-header">
-            <div class="dash-card-title">📋 Prochaines locations</div>
-          </div>
-          <div class="upcoming-list" id="upcomingList"></div>
-        </div>
-      </div>
-
     </main>
   </div>
 </div>
@@ -777,7 +684,6 @@ function handleRegister(e) {
 }
 
 function loginSuccess() {
-  localStorage.setItem('pr_session', JSON.stringify({ prenom: currentUser.prenom, nom: currentUser.nom, type: currentUser.type }));
   document.getElementById('authWrapper').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
   populateDashboard();
@@ -922,241 +828,11 @@ function checkPw(v) {
 // ── DÉCONNEXION ───────────────────────────────────────────────
 function handleLogout() {
   currentUser = null;
-  localStorage.removeItem('pr_session');
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('authWrapper').style.display = 'flex';
   document.getElementById('loginEmail').value = '';
   document.getElementById('loginPw').value = '';
   switchTab('connexion');
-}
-
-// ── CALENDAR ──────────────────────────────────────────────────
-const MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
-const MONTHS_SHORT = ['jan.','fév.','mar.','avr.','mai','jun.','jul.','aoû.','sep.','oct.','nov.','déc.'];
-
-let calDate = (() => { const d = new Date(); return new Date(d.getFullYear(), d.getMonth(), 1); })();
-let calTool = 'all';
-
-// Booking data (keyed YYYY-MM-DD)
-const CAL_BOOKINGS = {
-  '2026-06-10': { type:'booked',  tools:['Bétonière'],          tenant:'Marc D.',   price:28, days:2 },
-  '2026-06-11': { type:'booked',  tools:['Bétonière'],          tenant:'Marc D.',   price:28, days:2 },
-  '2026-06-25': { type:'booked',  tools:['Marteau piqueur'],    tenant:'Sophie L.', price:12, days:2 },
-  '2026-06-26': { type:'booked',  tools:['Marteau piqueur'],    tenant:'Sophie L.', price:12, days:2 },
-  '2026-06-28': { type:'pending', tools:['Échafaudage'],        tenant:'Karim B.',  price:35, days:3 },
-  '2026-06-29': { type:'pending', tools:['Échafaudage'],        tenant:'Karim B.',  price:35, days:3 },
-  '2026-06-30': { type:'pending', tools:['Échafaudage'],        tenant:'Karim B.',  price:35, days:3 },
-  '2026-07-04': { type:'booked',  tools:['Marteau piqueur'],    tenant:'Léa M.',    price:12, days:2 },
-  '2026-07-05': { type:'booked',  tools:['Marteau piqueur'],    tenant:'Léa M.',    price:12, days:2 },
-  '2026-07-14': { type:'pending', tools:['Marteau piqueur','Échafaudage'], tenant:'Paul R.', price:47, days:3 },
-  '2026-07-15': { type:'pending', tools:['Marteau piqueur','Échafaudage'], tenant:'Paul R.', price:47, days:3 },
-  '2026-07-16': { type:'pending', tools:['Marteau piqueur','Échafaudage'], tenant:'Paul R.', price:47, days:3 },
-  '2026-07-22': { type:'booked',  tools:['Bétonière'],          tenant:'Nadia B.',  price:28, days:1 },
-  '2026-08-05': { type:'pending', tools:['Échafaudage'],        tenant:'Thierry M.',price:35, days:2 },
-  '2026-08-06': { type:'pending', tools:['Échafaudage'],        tenant:'Thierry M.',price:35, days:2 },
-};
-const calBlocked = new Set();
-
-const TOOL_KEYS = { marteau:'Marteau piqueur', echafaudage:'Échafaudage', betoniere:'Bétonière' };
-
-function dayKey(y, m, d) {
-  return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-}
-
-function getBooking(key) {
-  const b = CAL_BOOKINGS[key];
-  if (!b) return null;
-  if (calTool === 'all') return b;
-  const toolName = TOOL_KEYS[calTool];
-  return b.tools.some(t => t.includes(toolName)) ? b : null;
-}
-
-function renderCalendar() {
-  const y = calDate.getFullYear(), m = calDate.getMonth();
-  document.getElementById('calMonthLabel').textContent = `${MONTHS_FR[m]} ${y}`;
-
-  const grid = document.getElementById('calGrid');
-  const today = new Date(); today.setHours(0,0,0,0);
-
-  // Headers
-  grid.innerHTML = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim']
-    .map(h => `<div class="cal-hd">${h}</div>`).join('');
-
-  const firstDow = new Date(y, m, 1).getDay(); // 0=Sun
-  const offset   = firstDow === 0 ? 6 : firstDow - 1;
-  const total    = new Date(y, m+1, 0).getDate();
-
-  // Leading empty cells
-  for (let i = 0; i < offset; i++) {
-    grid.insertAdjacentHTML('beforeend', '<div class="cal-day cal-empty"></div>');
-  }
-
-  for (let d = 1; d <= total; d++) {
-    const key   = dayKey(y, m, d);
-    const date  = new Date(y, m, d);
-    const past  = date < today;
-    const isToday = date.getTime() === today.getTime();
-    const booking = getBooking(key);
-    const blocked = calBlocked.has(key);
-
-    let cls = 'cal-day';
-    if (past)    cls += ' cal-past';
-    if (isToday) cls += ' cal-today';
-    if (booking?.type === 'booked')   cls += ' cal-booked';
-    else if (booking?.type === 'pending') cls += ' cal-pending';
-    else if (blocked) cls += ' cal-blocked';
-
-    // Multi-tool dots
-    let dotsHTML = '';
-    if (booking && calTool === 'all' && booking.tools.length > 1) {
-      dotsHTML = `<div class="cal-multi-dot">${booking.tools.map(() => '<span style="background:rgba(255,255,255,.7)"></span>').join('')}</div>`;
-    }
-
-    const cell = document.createElement('div');
-    cell.className = cls;
-    cell.innerHTML = d + dotsHTML;
-    cell.setAttribute('data-key', key);
-
-    if (!past) {
-      cell.addEventListener('click', () => handleCalDay(key, d, m, y, booking, blocked));
-    }
-    grid.appendChild(cell);
-  }
-
-  renderUpcoming();
-}
-
-function handleCalDay(key, d, m, y, booking, blocked) {
-  const panel = document.getElementById('calDetailPanel');
-  const dateLabel = `${d} ${MONTHS_FR[m]} ${y}`;
-
-  if (booking) {
-    const isPending = booking.type === 'pending';
-    const badgeCls  = isPending ? 'status-attente' : 'status-confirmee';
-    const badgeTxt  = isPending ? 'En attente' : 'Confirmée';
-    panel.innerHTML = `
-      <div class="cal-detail-card ${isPending ? '' : ''}">
-        <div class="cal-detail-date">📅 ${dateLabel}</div>
-        <div class="cal-detail-tool">${booking.tools.join(' + ')}</div>
-        <div class="cal-detail-row">👤 Locataire : <strong>${booking.tenant}</strong></div>
-        <div class="cal-detail-row">💰 ${booking.price} €/jour · ${booking.days} jour${booking.days>1?'s':''} · Total ${booking.price*booking.days} €</div>
-        <div style="margin-top:.7rem"><span class="status-badge ${badgeCls}">${badgeTxt}</span></div>
-        ${isPending ? `<div style="display:flex;gap:.5rem;margin-top:.8rem">
-          <button class="btn-xs btn-xs-primary" onclick="confirmCalResa('${key}')">✓ Accepter</button>
-          <button class="btn-xs btn-xs-danger" onclick="hideCalDetail()">✗ Refuser</button>
-        </div>` : ''}
-      </div>`;
-    panel.style.display = 'block';
-  } else if (blocked) {
-    panel.innerHTML = `
-      <div class="cal-detail-card blocked-card">
-        <div class="cal-detail-date">🔒 ${dateLabel} — Bloqué par vous</div>
-        <div class="cal-detail-row" style="margin-top:.3rem">Aucune réservation ne sera acceptée ce jour.</div>
-        <button class="btn-xs btn-xs-outline" style="margin-top:.8rem" onclick="unblockCalDay('${key}')">Débloquer ce jour</button>
-      </div>`;
-    panel.style.display = 'block';
-  } else {
-    // Block this day
-    calBlocked.add(key);
-    renderCalendar();
-    panel.innerHTML = `
-      <div class="cal-detail-card blocked-card">
-        <div class="cal-detail-date">🔒 ${dateLabel} — Marqué indisponible</div>
-        <div class="cal-detail-row" style="margin-top:.3rem">Les locataires ne pourront pas réserver ce jour.</div>
-        <button class="btn-xs btn-xs-outline" style="margin-top:.8rem" onclick="unblockCalDay('${key}')">Annuler le blocage</button>
-      </div>`;
-    panel.style.display = 'block';
-    showToast('🔒', `${dateLabel} marqué indisponible`);
-  }
-}
-
-function confirmCalResa(key) {
-  if (CAL_BOOKINGS[key]) CAL_BOOKINGS[key].type = 'booked';
-  // Mark all days of same reservation range
-  Object.keys(CAL_BOOKINGS).forEach(k => {
-    const b = CAL_BOOKINGS[k];
-    if (b && b.tenant === CAL_BOOKINGS[key]?.tenant && k >= key) b.type = 'booked';
-  });
-  hideCalDetail();
-  renderCalendar();
-  showToast('✅', 'Réservation confirmée !');
-}
-
-function unblockCalDay(key) {
-  calBlocked.delete(key);
-  hideCalDetail();
-  renderCalendar();
-  showToast('✅', 'Jour débloqué');
-}
-
-function hideCalDetail() {
-  document.getElementById('calDetailPanel').style.display = 'none';
-}
-
-function changeCalMonth(dir) {
-  calDate = new Date(calDate.getFullYear(), calDate.getMonth() + dir, 1);
-  hideCalDetail();
-  renderCalendar();
-}
-
-function selectCalTool(btn, tool) {
-  calTool = tool;
-  document.querySelectorAll('.cal-tool-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  hideCalDetail();
-  renderCalendar();
-}
-
-function renderUpcoming() {
-  const today = new Date(); today.setHours(0,0,0,0);
-  const list = document.getElementById('upcomingList');
-  if (!list) return;
-
-  const future = Object.entries(CAL_BOOKINGS)
-    .filter(([k, b]) => {
-      const d = new Date(k); d.setHours(0,0,0,0);
-      if (d < today) return false;
-      if (calTool !== 'all') {
-        const name = TOOL_KEYS[calTool];
-        return b.tools.some(t => t.includes(name));
-      }
-      return true;
-    })
-    // Keep only first day of each group (by tenant+month)
-    .filter(([k, b], i, arr) => {
-      if (i === 0) return true;
-      const prev = arr[i-1];
-      return prev[1].tenant !== b.tenant || prev[0].slice(0,7) !== k.slice(0,7);
-    })
-    .sort(([a],[b]) => a.localeCompare(b))
-    .slice(0, 5);
-
-  if (future.length === 0) {
-    list.innerHTML = `<div class="cal-empty-msg">Aucune location à venir pour cette sélection.</div>`;
-    return;
-  }
-
-  list.innerHTML = future.map(([key, b]) => {
-    const date = new Date(key);
-    const day  = date.getDate();
-    const mon  = MONTHS_SHORT[date.getMonth()];
-    const isPending = b.type === 'pending';
-    return `
-      <div class="upcoming-item">
-        <div class="upcoming-date-block">
-          <div class="upcoming-date-day">${day}</div>
-          <div class="upcoming-date-mon">${mon}</div>
-        </div>
-        <div class="upcoming-info">
-          <div class="upcoming-tool">${b.tools.join(' · ')}</div>
-          <div class="upcoming-tenant">👤 ${b.tenant} · ${b.days} jour${b.days>1?'s':''}</div>
-        </div>
-        <div>
-          <div class="upcoming-amount">${b.price * b.days} €</div>
-          <span class="status-badge ${isPending?'status-attente':'status-confirmee'}" style="font-size:.6rem;margin-top:.3rem;display:block;text-align:center">${isPending?'Attente':'Confirmé'}</span>
-        </div>
-      </div>`;
-  }).join('');
 }
 
 // ── TOAST ─────────────────────────────────────────────────────
