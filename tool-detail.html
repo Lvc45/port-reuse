@@ -18,6 +18,8 @@
     body{font-family:'Inter',sans-serif;background:var(--sand);color:var(--text);line-height:1.6;}
     a{color:inherit;text-decoration:none;}
     img{display:block;max-width:100%;}
+
+    /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(26,46,26,.97);backdrop-filter:blur(8px);}
     .nav-logo{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--pale);letter-spacing:.04em;}
     .nav-logo span{color:var(--terracotta);}
@@ -25,13 +27,20 @@
     .nav-back:hover{opacity:1;}
     .nav-auth{background:var(--terracotta);color:var(--white);padding:.4rem 1rem;border-radius:6px;font-size:.85rem;font-weight:600;transition:background .2s;}
     .nav-auth:hover{background:var(--terracotta-dark);}
+
+    /* BREADCRUMB */
     .breadcrumb{margin-top:64px;background:var(--white);padding:.75rem 5%;border-bottom:1px solid var(--pale);display:flex;align-items:center;gap:.6rem;font-size:.8rem;color:var(--text-muted);}
     .breadcrumb a{color:var(--sage);font-weight:600;}
     .breadcrumb a:hover{text-decoration:underline;}
     .breadcrumb .sep{opacity:.4;}
+
+    /* LAYOUT */
     .detail-wrapper{max-width:1100px;margin:0 auto;padding:2rem 5% 6rem;}
     .detail-layout{display:grid;grid-template-columns:1fr 340px;gap:2.5rem;align-items:start;}
     .detail-left{display:flex;flex-direction:column;gap:2rem;}
+    .detail-right{}
+
+    /* TOOL TITLE BLOCK */
     .tool-title-block{background:var(--white);border-radius:16px;padding:1.8rem;box-shadow:var(--shadow);}
     .tool-cat-badge{display:inline-flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--sage);background:rgba(74,124,89,.1);padding:.3rem .8rem;border-radius:4px;margin-bottom:.9rem;}
     .tool-title{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,3vw,2rem);color:var(--forest);line-height:1.2;margin-bottom:.8rem;}
@@ -41,6 +50,9 @@
     .dispo-badge{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:.3rem .8rem;border-radius:20px;}
     .dispo-badge.yes{background:rgba(74,124,89,.15);color:var(--sage);}
     .dispo-badge.no{background:rgba(232,96,44,.12);color:var(--terracotta);}
+
+    /* GALLERY */
+    .gallery-section{}
     .gal-main{width:100%;height:300px;border-radius:16px;overflow:hidden;position:relative;cursor:zoom-in;margin-bottom:.75rem;box-shadow:var(--shadow);}
     .gal-main-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:6rem;transition:transform .3s;}
     .gal-main:hover .gal-main-bg{transform:scale(1.04);}
@@ -49,11 +61,15 @@
     .gal-thumb{height:72px;border-radius:10px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all .18s;display:flex;align-items:center;justify-content:center;font-size:1.8rem;position:relative;}
     .gal-thumb.active,.gal-thumb:hover{border-color:var(--sage);transform:translateY(-2px);}
     .gal-thumb-label{position:absolute;bottom:0;left:0;right:0;background:rgba(26,46,26,.6);color:rgba(200,216,176,.9);font-size:.58rem;font-weight:600;text-align:center;padding:.2rem;}
+
+    /* DETAIL SECTIONS */
     .ds{background:var(--white);border-radius:16px;padding:1.6rem;box-shadow:var(--shadow);}
     .ds-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--forest);margin-bottom:1rem;padding-bottom:.7rem;border-bottom:2px solid var(--sand);}
     .ds-desc{font-size:.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.2rem;}
     .ds-highlights{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem;}
     .ds-hl{display:flex;align-items:center;gap:.4rem;background:rgba(74,124,89,.08);border:1px solid rgba(74,124,89,.2);border-radius:8px;padding:.35rem .8rem;font-size:.78rem;color:var(--sage);font-weight:600;}
+
+    /* SPECS TABLE */
     .spec-table{width:100%;border-collapse:collapse;}
     .spec-table tr:nth-child(even) td{background:var(--sand);}
     .spec-table td{padding:.55rem .7rem;font-size:.84rem;border-radius:4px;}
@@ -62,6 +78,8 @@
     .acc-list{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem;}
     .acc-tag{background:var(--sand);border:1px solid var(--pale);border-radius:8px;padding:.3rem .75rem;font-size:.78rem;color:var(--text-muted);}
     .condition-box{background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.25);border-radius:10px;padding:.8rem 1rem;font-size:.82rem;color:#92400e;margin-top:1rem;line-height:1.5;}
+
+    /* OWNER CARD */
     .owner-flex{display:flex;align-items:center;gap:1.2rem;}
     .owner-avatar{width:60px;height:60px;border-radius:50%;background:var(--sage);display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;}
     .owner-name{font-weight:700;font-size:1rem;color:var(--forest);}
@@ -73,7 +91,10 @@
     .owner-verified{display:inline-flex;align-items:center;gap:.3rem;font-size:.72rem;font-weight:700;color:var(--sage);background:rgba(74,124,89,.1);padding:.2rem .6rem;border-radius:4px;}
     .btn-msg{display:inline-flex;align-items:center;gap:.5rem;margin-top:1rem;padding:.55rem 1.2rem;border-radius:8px;border:1.5px solid var(--pale);background:transparent;font-size:.85rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;}
     .btn-msg:hover{border-color:var(--sage);color:var(--sage);}
+
+    /* AVAILABILITY CALENDAR */
     .avail-months{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+    .avail-month{}
     .avail-month-title{font-weight:700;font-size:.85rem;color:var(--forest);text-align:center;margin-bottom:.8rem;text-transform:capitalize;}
     .avail-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;}
     .avail-hd{text-align:center;font-size:.65rem;font-weight:700;color:var(--text-muted);text-transform:uppercase;padding:.2rem 0;}
@@ -89,6 +110,8 @@
     .avail-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--sand);}
     .avail-leg{display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:var(--text-muted);}
     .avail-leg-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+
+    /* REVIEWS */
     .review-summary{display:flex;align-items:center;gap:1.5rem;margin-bottom:1.5rem;padding-bottom:1.2rem;border-bottom:1px solid var(--sand);}
     .review-big-rating{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--forest);line-height:1;}
     .review-stars{color:#f5a623;font-size:1.1rem;letter-spacing:.1em;}
@@ -102,11 +125,15 @@
     .review-item{padding:1rem;background:var(--sand);border-radius:12px;}
     .review-header{display:flex;align-items:center;gap:.8rem;margin-bottom:.6rem;}
     .review-avatar{width:36px;height:36px;border-radius:50%;background:var(--pale);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+    .review-meta{flex:1;}
     .review-author{font-weight:600;font-size:.85rem;color:var(--forest);}
     .review-role{font-size:.72rem;color:var(--text-muted);}
+    .review-rating-date{display:flex;align-items:center;gap:.5rem;}
     .review-stars-sm{color:#f5a623;font-size:.75rem;}
     .review-date{font-size:.72rem;color:var(--text-muted);}
     .review-text{font-size:.85rem;color:var(--text-muted);line-height:1.6;font-style:italic;}
+
+    /* STICKY PRICE CARD */
     .price-sticky{position:sticky;top:84px;background:var(--white);border-radius:18px;box-shadow:0 8px 36px rgba(26,46,26,.18);padding:1.6rem;border:1.5px solid var(--pale);}
     .price-main{display:flex;align-items:baseline;gap:.3rem;margin-bottom:.3rem;}
     .price-amount{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--terracotta);}
@@ -130,42 +157,73 @@
     .reserve-auth-note a{color:var(--sage);font-weight:600;}
     .price-guarantees{display:flex;flex-direction:column;gap:.5rem;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--sand);}
     .pg-item{display:flex;align-items:center;gap:.6rem;font-size:.75rem;color:var(--text-muted);}
+
+    /* MOBILE BOTTOM CTA */
     .mobile-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;background:var(--white);border-top:1px solid var(--pale);padding:1rem 5%;align-items:center;justify-content:space-between;box-shadow:0 -4px 20px rgba(26,46,26,.12);}
     .mobile-cta-price{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:900;color:var(--terracotta);}
     .mobile-cta-price span{font-family:'Inter',sans-serif;font-size:.8rem;font-weight:400;color:var(--text-muted);}
-    .mobile-cta-btn{background:var(--terracotta);color:var(--white);padding:.7rem 1.6rem;border-radius:8px;font-weight:700;font-size:.9rem;border:none;cursor:pointer;}
+    .mobile-cta-btn{background:var(--terracotta);color:var(--white);padding:.7rem 1.6rem;border-radius:8px;font-weight:700;font-size:.9rem;border:none;cursor:pointer;transition:background .2s;}
+    .mobile-cta-btn:hover{background:var(--terracotta-dark);}
+
+    /* TOAST */
     .toast{position:fixed;bottom:5rem;right:2rem;z-index:300;background:var(--forest);color:var(--pale);padding:1rem 1.5rem;border-radius:12px;font-size:.9rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:.7rem;transform:translateY(80px);opacity:0;transition:all .35s;}
     .toast.show{transform:translateY(0);opacity:1;}
-    @media(max-width:900px){.detail-layout{grid-template-columns:1fr;}.detail-right{display:none;}.mobile-cta{display:flex;}.avail-months{grid-template-columns:1fr;}}
-    @media(max-width:600px){.gal-main{height:220px;}.review-summary{flex-direction:column;gap:.8rem;}}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .detail-layout{grid-template-columns:1fr;}
+      .detail-right{display:none;}
+      .mobile-cta{display:flex;}
+      .avail-months{grid-template-columns:1fr;}
+    }
+    @media(max-width:600px){
+      .gal-thumbs{grid-template-columns:repeat(4,1fr);}
+      .gal-main{height:220px;}
+      .owner-stats{gap:.5rem;}
+      .review-summary{flex-direction:column;gap:.8rem;}
+    }
   </style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="port-reuse-final.html">PORT <span>&</span> REUSE</a>
-  <a class="nav-back" href="port-reuse-final.html#outils">← Retour aux outils</a>
+  <a class="nav-logo" href="index.html">PORT <span>&</span> REUSE</a>
+  <a class="nav-back" href="index.html">← Retour aux outils</a>
   <a class="nav-auth" href="auth.html" id="navAuthLink">👤 Mon compte</a>
 </nav>
 
+<!-- BREADCRUMB -->
 <div class="breadcrumb">
-  <a href="port-reuse-final.html">Accueil</a>
+  <a href="index.html">Accueil</a>
   <span class="sep">/</span>
-  <a href="port-reuse-final.html#outils">Outils</a>
+  <a href="index.html#outils">Outils</a>
   <span class="sep">/</span>
   <span id="breadToolName">Chargement…</span>
 </div>
 
+<!-- MAIN WRAPPER -->
 <div class="detail-wrapper">
   <div class="detail-layout">
+
+    <!-- ── LEFT COLUMN ── -->
     <div class="detail-left">
+
+      <!-- Title block -->
       <div class="tool-title-block" id="titleBlock"></div>
+
+      <!-- Gallery -->
       <div class="gallery-section">
         <div class="gal-main" id="galMain"></div>
         <div class="gal-thumbs" id="galThumbs"></div>
       </div>
+
+      <!-- Description & specs -->
       <div class="ds" id="descSection"></div>
+
+      <!-- Owner -->
       <div class="ds" id="ownerSection"></div>
+
+      <!-- Availability calendar -->
       <div class="ds" id="calSection">
         <div class="ds-title">📅 Disponibilités</div>
         <div class="avail-months" id="availMonths"></div>
@@ -176,96 +234,243 @@
           <div class="avail-leg"><span class="avail-leg-dot" style="background:var(--forest)"></span>Sélectionné</div>
         </div>
       </div>
+
+      <!-- Reviews -->
       <div class="ds" id="reviewsSection"></div>
+
     </div>
+
+    <!-- ── RIGHT COLUMN (sticky) ── -->
     <div class="detail-right">
       <div class="price-sticky" id="priceCard"></div>
     </div>
+
   </div>
 </div>
 
+<!-- MOBILE BOTTOM CTA -->
 <div class="mobile-cta" id="mobileCta">
   <div>
     <div class="mobile-cta-price" id="mobilePrice">— <span>/jour</span></div>
     <div style="font-size:.72rem;color:var(--text-muted)" id="mobileRating"></div>
   </div>
-  <button class="mobile-cta-btn" onclick="scrollToCalendar()">Réserver →</button>
+  <button class="mobile-cta-btn" onclick="document.querySelector('.price-sticky') ? scrollToCalendar() : window.location.href='auth.html'">Réserver →</button>
 </div>
 
+<!-- TOAST -->
 <div class="toast" id="toast">
   <span id="toastIcon">✅</span>
   <span id="toastMsg"></span>
 </div>
 
 <script>
+/* ── TOOL DATA ── */
 const TOOLS = {
-  1:{ emoji:'🔨', bg:'#ddd0c0', name:'Marteau piqueur SDS+ 1500W', brand:'Bosch', model:'GSH 5E', cat:'Électroportatif', catIcon:'⚡', dispo:true, price:12, caution:80, dist:'1.3 km', rating:4.9, reviewCount:23, arrond:'11ᵉ arrondissement · Paris', desc:'Marteau piqueur professionnel Bosch GSH 5E, 1 500 W. Idéal pour démolition de béton, carrelage et perçage lourd. Énergie de frappe 8,5 J.', highlights:['Idéal démolition béton','Énergie de frappe 8,5 J','Mandrin SDS+ 13 mm','Livraison possible +10 €'], specs:[['Puissance','1 500 W'],['Énergie de frappe','8,5 J'],['Coups / min','1 700 – 2 900'],['Poids','5,8 kg'],['Mandrin','SDS+ 13 mm'],['Câble','4 m']], accessories:['3 burins plats SDS+','2 burins pointus','Graisse SDS','Mallette de transport'], conditions:'Nettoyage soigné après usage. Accessoires à restituer. Caution libérée sous 24h.', photos:[{label:'Vue principale',tint:'#ddd0c0',icon:'🔨'},{label:'Mandrin SDS+',tint:'#cec0b0',icon:'⚙️'},{label:'Accessoires',tint:'#e8ddd0',icon:'🧰'},{label:'État général',tint:'#d4c8b8',icon:'✅'}], owner:{name:'Laurent D.',avatar:'👷',job:'Artisan maçon',rating:4.9,nbLocations:47,since:'jan. 2024',responseTime:'< 1 h',verified:true}, reviews:[{author:'Thierry M.',avatar:'🧑‍🔧',role:'Particulier',rating:5,date:'Il y a 2 jours',text:'Outil en parfait état, Laurent très réactif. Excellent travail.'},{author:'Sophie L.',avatar:'👩',role:'Particulière',rating:5,date:'Il y a 1 semaine',text:'Parfait pour démolir ma salle de bain. Matériel propre.'}], bookedDays:['2026-06-25','2026-06-26'], pendingDays:[] },
-  2:{ emoji:'🏗️', bg:'#c8d0c0', name:'Échafaudage roulant 4 m (3 niveaux)', brand:'Layher', model:'Uni Léger', cat:'Échafaudage', catIcon:'🪜', dispo:true, price:35, caution:200, dist:'3.8 km', rating:4.7, reviewCount:11, arrond:'11ᵉ arrondissement · Paris', desc:'Échafaudage roulant professionnel, 4 m de hauteur de travail sur 3 niveaux. Charge max 200 kg. Roulettes avec freins de sécurité. Montage sans outil en 20 minutes.', highlights:['Hauteur plancher 4 m','Charge max 200 kg','Roulettes freinées','Montage sans outil'], specs:[['Hauteur plancher','4,0 m'],['Charge max','200 kg'],['Largeur','0,75 m'],['Longueur','1,80 m'],['Poids total','68 kg'],['Niveaux','3']], accessories:['4 roulettes Ø 125 mm avec freins','Garde-corps réglable','Plinthe de sécurité','Notice de montage'], conditions:'Retour en pièces détachées nettoyées. Inspection conjointe avant et après.', photos:[{label:'Vue ensemble',tint:'#c8d0c0',icon:'🏗️'},{label:'Plateau de travail',tint:'#b8c0b0',icon:'🪜'},{label:'Roulettes & freins',tint:'#d8e0d0',icon:'🔩'},{label:'Garde-corps',tint:'#c0c8b8',icon:'🛡️'}], owner:{name:'Nadia B.',avatar:'🏢',job:'Responsable achats PME BTP',rating:4.8,nbLocations:31,since:'mar. 2023',responseTime:'< 3 h',verified:true}, reviews:[{author:'Karim B.',avatar:'👷',role:'Artisan',rating:5,date:'Hier',text:'Matériel solide et bien entretenu. Montage en 20 min.'},{author:'Marie C.',avatar:'👩',role:'Auto-entrepreneur',rating:5,date:'Il y a 1 mois',text:'Excellente qualité, propriétaire très arrangeante.'}], bookedDays:['2026-06-28','2026-06-29','2026-06-30'], pendingDays:['2026-07-14','2026-07-15'] },
-  3:{ emoji:'📐', bg:'#c0d0d8', name:'Niveau laser rotatif + trépieds', brand:'Leica', model:'Rugby 610', cat:'Mesure & traçage', catIcon:'📏', dispo:false, price:18, caution:120, dist:'0.9 km', rating:5.0, reviewCount:8, arrond:'1ᵉʳ arrondissement · Paris', desc:'Niveau laser rotatif professionnel Leica Rugby 610. Précision ±0,3 mm/m, portée 200 m avec récepteur. Batterie 30h. IP67.', highlights:['Précision ±0,3 mm/m','Portée 200 m','Batterie 30h','IP67 eau & poussière'], specs:[['Précision','±0,3 mm/m'],['Portée','200 m'],['Autonomie','30 h'],['Protection','IP67'],['Poids','2,4 kg']], accessories:['Trépied aluminium','Récepteur laser RodEye 140','2 batteries Li-Ion','Chargeur rapide','Mallette rigide'], conditions:'Manipulation avec précaution. Nettoyage optique uniquement avec le chiffon fourni.', photos:[{label:'Vue principale',tint:'#c0d0d8',icon:'📐'},{label:'Faisceau laser',tint:'#b0c0c8',icon:'🔴'},{label:'Trépied & récepteur',tint:'#d0e0e8',icon:'📡'},{label:'Mallette complète',tint:'#b8c8d0',icon:'🧳'}], owner:{name:'Pierre M.',avatar:'🧑‍💼',job:'Géomètre indépendant',rating:5.0,nbLocations:18,since:'jun. 2024',responseTime:'< 30 min',verified:true}, reviews:[{author:'Adrien L.',avatar:'🧑‍🔧',role:'Artisan carreleur',rating:5,date:'Il y a 5 jours',text:'Appareil impeccable, précision au rendez-vous.'}], bookedDays:['2026-06-22','2026-06-23','2026-06-24'], pendingDays:[] },
-  4:{ emoji:'⛏️', bg:'#d0c8b8', name:'Bétonière 160 L électrique', brand:'Altrad', model:'EB160', cat:'Terrassement', catIcon:'⛏️', dispo:true, price:28, caution:150, dist:'2.1 km', rating:4.6, reviewCount:17, arrond:'5ᵉ arrondissement · Paris', desc:'Bétonière électrique Altrad EB160, capacité 160 litres. Idéale pour chape, fondations et dalles. Nettoyée après chaque location. Câble 10 m fourni.', highlights:['Capacité 160 L','Moteur 750 W','Câble 10 m inclus','Nettoyée après chaque loc.'], specs:[['Capacité','160 L'],['Puissance','750 W'],['Vitesse tambour','28 tr/min'],['Poids','72 kg'],['Câble','10 m']], accessories:['Câble rallonge 10 m','Roulettes de transport (2)','Notice d\'utilisation'], conditions:'Rinçage immédiat du tambour après usage. Retour tambour propre et sec.', photos:[{label:'Vue principale',tint:'#d0c8b8',icon:'⛏️'},{label:'Tambour intérieur',tint:'#c0b8a8',icon:'🔄'},{label:'Moteur & commandes',tint:'#e0d8c8',icon:'⚙️'},{label:'Roulettes transport',tint:'#c8c0b0',icon:'🛞'}], owner:{name:'Robert A.',avatar:'🧑‍🔧',job:'Maçon retraité',rating:4.7,nbLocations:29,since:'sep. 2023',responseTime:'< 2 h',verified:true}, reviews:[{author:'Julien F.',avatar:'👨',role:'Particulier',rating:5,date:'Il y a 1 semaine',text:'Parfaite pour couler ma dalle de garage. Robert super sympa.'}], bookedDays:['2026-06-10','2026-06-11'], pendingDays:['2026-07-22'] },
-  5:{ emoji:'🔩', bg:'#d8c8d0', name:'Visseuse à choc 18V + 2 batteries', brand:'Makita', model:'DTD154', cat:'Électroportatif', catIcon:'⚡', dispo:true, price:8, caution:60, dist:'0.6 km', rating:4.8, reviewCount:34, arrond:'2ᵉ arrondissement · Paris', desc:'Visseuse à choc Makita DTD154 18V, couple max 170 Nm, 4 vitesses. 2 batteries BL1830B et chargeur rapide. Ultra-légère (1,1 kg).', highlights:['Couple max 170 Nm','4 vitesses','2 batteries 18V/3Ah','Poids 1,1 kg'], specs:[['Tension','18 V'],['Couple max','170 Nm'],['Coups / min','3 500'],['Vitesses','4'],['Poids','1,1 kg']], accessories:['2 batteries BL1830B (3 Ah)','Chargeur rapide DC18RC','Embout PH2','Sacoche de transport'], conditions:'Batteries à restituer chargées. Pas d\'utilisation en milieu humide.', photos:[{label:'Vue principale',tint:'#d8c8d0',icon:'🔩'},{label:'Mandrin & embout',tint:'#c8b8c0',icon:'⚙️'},{label:'2 batteries & chargeur',tint:'#e8d8e0',icon:'🔋'},{label:'Sacoche complète',tint:'#d0c0c8',icon:'🧰'}], owner:{name:'Antoine S.',avatar:'🧑',job:'Bricoleur passionné',rating:4.9,nbLocations:62,since:'oct. 2023',responseTime:'< 1 h',verified:true}, reviews:[{author:'Camille D.',avatar:'👩',role:'Particulière',rating:5,date:'Il y a 3 jours',text:'Parfaite pour mes meubles IKEA. Légère, puissante.'},{author:'Yvan K.',avatar:'🧑',role:'Bricoleur',rating:5,date:'Il y a 1 semaine',text:'Les 2 batteries permettent de travailler sans interruption.'}], bookedDays:[], pendingDays:['2026-07-04','2026-07-05'] },
-  6:{ emoji:'🏋️', bg:'#c8d8c0', name:'Palan électrique 500 kg', brand:'Kito', model:'ER2M', cat:'Levage & manutention', catIcon:'🏗️', dispo:true, price:45, caution:300, dist:'5.4 km', rating:4.5, reviewCount:6, arrond:'20ᵉ arrondissement · Paris', desc:'Palan électrique Kito ER2M 500 kg. Hauteur de levée 6 m, télécommande filaire 3 m. Conforme NF EN 14492-2. Usage professionnel uniquement.', highlights:['Charge max 500 kg','Hauteur levée 6 m','Télécommande filaire 3 m','Norme NF EN 14492-2'], specs:[['Charge max','500 kg'],['Hauteur de levée','6,0 m'],['Vitesse levée','4 m/min'],['Puissance','0,75 kW'],['Alimentation','230 V']], accessories:['Télécommande filaire 3 m','Crochet double sécurité','Certificat de conformité NF'], conditions:'Usage réservé aux professionnels. Caution intégrale en cas d\'incident.', photos:[{label:'Vue principale',tint:'#c8d8c0',icon:'🏋️'},{label:'Crochet & câble',tint:'#b8c8b0',icon:'🪝'},{label:'Télécommande',tint:'#d8e8d0',icon:'🎮'},{label:'Certificat & docs',tint:'#c0d0b8',icon:'📄'}], owner:{name:'Franck O.',avatar:'👨‍🏭',job:'Responsable technique entrepôt',rating:4.6,nbLocations:12,since:'avr. 2024',responseTime:'< 4 h',verified:true}, reviews:[{author:'David L.',avatar:'👨',role:'Chef de chantier',rating:5,date:'Il y a 1 semaine',text:'Parfait pour lever nos poutres métalliques. Matériel certifié.'}], bookedDays:['2026-07-22'], pendingDays:['2026-08-05','2026-08-06'] },
+  1: {
+    emoji:'🔨', bg:'#ddd0c0', name:'Marteau piqueur SDS+ 1500W',
+    brand:'Bosch', model:'GSH 5E', cat:'Électroportatif', catIcon:'⚡',
+    dispo:true, price:12, caution:80, dist:'1.3 km', rating:4.9, reviewCount:23,
+    arrond:'3ᵉ arrondissement · Paris',
+    desc:'Marteau piqueur professionnel Bosch GSH 5E, 1 500 W. Idéal pour démolition de béton, carrelage et perçage lourd. Énergie de frappe 8,5 J pour une efficacité maximale sur tout type de support.',
+    highlights:['Idéal démolition béton','Énergie de frappe 8,5 J','Mandrin SDS+ 13 mm','Livraison possible +10 €'],
+    specs:[['Puissance','1 500 W'],['Énergie de frappe','8,5 J'],['Coups / min','1 700 – 2 900'],['Poids','5,8 kg'],['Mandrin','SDS+ 13 mm'],['Câble','4 m']],
+    accessories:['3 burins plats SDS+','2 burins pointus','Graisse SDS (tube)','Mallette de transport'],
+    conditions:'Nettoyage soigné après usage. Tous les accessoires doivent être restitués. Caution libérée après contrôle sous 24h.',
+    photos:[{label:'Vue principale',tint:'#ddd0c0',icon:'🔨'},{label:'Mandrin SDS+',tint:'#cec0b0',icon:'⚙️'},{label:'Accessoires',tint:'#e8ddd0',icon:'🧰'},{label:'État général',tint:'#d4c8b8',icon:'✅'}],
+    owner:{name:'Laurent D.',avatar:'👷',job:'Artisan maçon',rating:4.9,nbLocations:47,since:'jan. 2024',responseTime:'< 1 h',verified:true},
+    reviews:[
+      {author:'Thierry M.',avatar:'🧑‍🔧',role:'Particulier',rating:5,date:'Il y a 2 jours',text:'Outil en parfait état, Laurent très réactif. Le marteau a fait un excellent travail sur ma démo de cloisons. Je recommande !'},
+      {author:'Sophie L.',avatar:'👩',role:'Particulière',rating:5,date:'Il y a 1 semaine',text:'Parfait pour démolir ma salle de bain. Matériel propre avec tous les accessoires. Caution rendue en 2h.'},
+      {author:'Marc D.',avatar:'🧑',role:'Auto-entrepreneur',rating:4,date:'Il y a 3 semaines',text:'Très bon outil, un peu lourd mais normal pour cette catégorie. Prix très compétitif vs agence.'},
+    ],
+    bookedDays:['2026-06-25','2026-06-26'],
+    pendingDays:[],
+  },
+  2: {
+    emoji:'🏗️', bg:'#c8d0c0', name:'Échafaudage roulant 4 m (3 niveaux)',
+    brand:'Layher', model:'Uni Léger', cat:'Échafaudage', catIcon:'🪜',
+    dispo:true, price:35, caution:200, dist:'3.8 km', rating:4.7, reviewCount:11,
+    arrond:'11ᵉ arrondissement · Paris',
+    desc:'Échafaudage roulant professionnel, 4 m de hauteur de travail sur 3 niveaux. Charge max 200 kg. Roulettes avec freins de sécurité homologuées. Montage sans outil en 20 minutes.',
+    highlights:['Hauteur plancher 4 m','Charge max 200 kg','Roulettes freinées','Montage sans outil'],
+    specs:[['Hauteur plancher','4,0 m'],['Charge max','200 kg'],['Largeur','0,75 m'],['Longueur','1,80 m'],['Poids total','68 kg'],['Niveaux de travail','3']],
+    accessories:['4 roulettes Ø 125 mm avec freins','Garde-corps réglable','Plinthe de sécurité','Notice de montage'],
+    conditions:'Montage/démontage par le locataire. Retour en pièces détachées nettoyées. Inspection conjointe avant et après.',
+    photos:[{label:'Vue ensemble',tint:'#c8d0c0',icon:'🏗️'},{label:'Plateau de travail',tint:'#b8c0b0',icon:'🪜'},{label:'Roulettes & freins',tint:'#d8e0d0',icon:'🔩'},{label:'Garde-corps',tint:'#c0c8b8',icon:'🛡️'}],
+    owner:{name:'Nadia B.',avatar:'🏢',job:'Responsable achats, PME BTP',rating:4.8,nbLocations:31,since:'mar. 2023',responseTime:'< 3 h',verified:true},
+    reviews:[
+      {author:'Karim B.',avatar:'👷',role:'Artisan',rating:5,date:'Hier',text:'Matériel solide et bien entretenu. Livraison rapide depuis le 11e. Montage en 20 min, très pratique.'},
+      {author:'Jean-Paul R.',avatar:'🧑',role:'Particulier',rating:4,date:'Il y a 2 semaines',text:'Bien pour peinture en hauteur. Stable et sécurisant. Je reprendrai au prochain chantier.'},
+      {author:'Marie C.',avatar:'👩',role:'Auto-entrepreneur',rating:5,date:'Il y a 1 mois',text:'Excellente qualité, propriétaire très arrangeante. Rapport qualité/prix imbattable.'},
+    ],
+    bookedDays:['2026-06-28','2026-06-29','2026-06-30'],
+    pendingDays:['2026-07-14','2026-07-15','2026-07-16'],
+  },
+  3: {
+    emoji:'📐', bg:'#c0d0d8', name:'Niveau laser rotatif + trépieds',
+    brand:'Leica', model:'Rugby 610', cat:'Mesure & traçage', catIcon:'📏',
+    dispo:false, price:18, caution:120, dist:'0.9 km', rating:5.0, reviewCount:8,
+    arrond:'1ᵉʳ arrondissement · Paris',
+    desc:'Niveau laser rotatif professionnel Leica Rugby 610. Précision ±0,3 mm/m, portée 200 m avec récepteur. Batterie 30h. IP67 — résistant eau et poussière. Idéal pour relevés de niveaux, fondations, chapes.',
+    highlights:['Précision ±0,3 mm/m','Portée 200 m','Batterie 30h','IP67 eau & poussière'],
+    specs:[['Précision','±0,3 mm/m'],['Portée','200 m (avec récepteur)'],['Autonomie','30 h'],['Vitesse rotation','0/150/300/600 tr/min'],['Protection','IP67'],['Poids','2,4 kg']],
+    accessories:['Trépied aluminium','Récepteur laser RodEye 140','2 batteries Li-Ion','Chargeur rapide','Lunettes de protection','Mallette rigide'],
+    conditions:'Manipulation avec précaution. Nettoyage optique uniquement avec le chiffon fourni. Caution intégrale retenue en cas de choc sur optique.',
+    photos:[{label:'Vue principale',tint:'#c0d0d8',icon:'📐'},{label:'Faisceau laser',tint:'#b0c0c8',icon:'🔴'},{label:'Trépied & récepteur',tint:'#d0e0e8',icon:'📡'},{label:'Mallette complète',tint:'#b8c8d0',icon:'🧳'}],
+    owner:{name:'Pierre M.',avatar:'🧑‍💼',job:'Géomètre indépendant',rating:5.0,nbLocations:18,since:'jun. 2024',responseTime:'< 30 min',verified:true},
+    reviews:[
+      {author:'Adrien L.',avatar:'🧑‍🔧',role:'Artisan carreleur',rating:5,date:'Il y a 5 jours',text:'Appareil impeccable, précision au rendez-vous. Pierre répond en 10 minutes. Le récepteur inclus est un vrai plus.'},
+      {author:'Emma P.',avatar:'👩',role:'Architecte',rating:5,date:'Il y a 3 semaines',text:'Top pour les relevés de niveaux. Mallette complète, bien rangée. Rien ne manquait.'},
+    ],
+    bookedDays:['2026-06-22','2026-06-23','2026-06-24'],
+    pendingDays:[],
+  },
+  4: {
+    emoji:'⛏️', bg:'#d0c8b8', name:'Bétonière 160 L électrique',
+    brand:'Altrad', model:'EB160', cat:'Terrassement', catIcon:'⛏️',
+    dispo:true, price:28, caution:150, dist:'2.1 km', rating:4.6, reviewCount:17,
+    arrond:'5ᵉ arrondissement · Paris',
+    desc:'Bétonière électrique Altrad EB160, capacité 160 litres. Idéale pour chape, fondations et dalles. Nettoyée après chaque location. Câble d\'alimentation 10 m fourni. Livraison possible en utilitaire.',
+    highlights:['Capacité 160 L','Moteur 750 W','Câble 10 m inclus','Nettoyée après chaque loc.'],
+    specs:[['Capacité','160 L'],['Puissance moteur','750 W'],['Vitesse tambour','28 tr/min'],['Poids','72 kg'],['Câble fourni','10 m'],['Niveau sonore','72 dB(A)']],
+    accessories:['Câble rallonge 10 m','Roulettes de transport (2)','Notice d\'utilisation'],
+    conditions:'Rinçage immédiat du tambour après usage impératif. Livraison possible (+25 €). Retour tambour propre et sec.',
+    photos:[{label:'Vue principale',tint:'#d0c8b8',icon:'⛏️'},{label:'Tambour intérieur',tint:'#c0b8a8',icon:'🔄'},{label:'Moteur & commandes',tint:'#e0d8c8',icon:'⚙️'},{label:'Roulettes transport',tint:'#c8c0b0',icon:'🛞'}],
+    owner:{name:'Robert A.',avatar:'🧑‍🔧',job:'Maçon retraité',rating:4.7,nbLocations:29,since:'sep. 2023',responseTime:'< 2 h',verified:true},
+    reviews:[
+      {author:'Julien F.',avatar:'👨',role:'Particulier',rating:5,date:'Il y a 1 semaine',text:'Parfaite pour couler ma dalle de garage. Robert est super sympa. Bétonière bien entretenue.'},
+      {author:'Hassan M.',avatar:'👷',role:'Artisan',rating:4,date:'Il y a 2 semaines',text:'Bon matériel, câble suffisant. Nettoyage à prévoir avant retour comme convenu.'},
+      {author:'Claire B.',avatar:'👩',role:'Particulière',rating:5,date:'Il y a 1 mois',text:'Super service, prix imbattable. La bétonière a tenu tout le weekend sans problème.'},
+    ],
+    bookedDays:['2026-06-10','2026-06-11'],
+    pendingDays:['2026-07-22'],
+  },
+  5: {
+    emoji:'🔩', bg:'#d8c8d0', name:'Visseuse à choc 18V + 2 batteries',
+    brand:'Makita', model:'DTD154', cat:'Électroportatif', catIcon:'⚡',
+    dispo:true, price:8, caution:60, dist:'0.6 km', rating:4.8, reviewCount:34,
+    arrond:'2ᵉ arrondissement · Paris',
+    desc:'Visseuse à choc Makita DTD154 18V, couple max 170 Nm, 4 vitesses. Livrée avec 2 batteries BL1830B et chargeur rapide DC18RC. Ultra-légère (1,1 kg) et maniable. La plus louée de Paris 2e.',
+    highlights:['Couple max 170 Nm','4 vitesses + mode bois','2 batteries 18V/3Ah','Poids 1,1 kg seulement'],
+    specs:[['Tension','18 V'],['Couple max','170 Nm'],['Coups / min','3 500'],['Vitesses','4'],['Poids (avec batterie)','1,1 kg'],['Batteries','BL1830B × 2']],
+    accessories:['2 batteries BL1830B (3 Ah)','Chargeur rapide DC18RC','Embout PH2 magnétique','Sacoche de transport'],
+    conditions:'Batteries à restituer chargées. Pas d\'utilisation en milieu humide. Embouts à remettre dans la sacoche.',
+    photos:[{label:'Vue principale',tint:'#d8c8d0',icon:'🔩'},{label:'Mandrin & embout',tint:'#c8b8c0',icon:'⚙️'},{label:'2 batteries & chargeur',tint:'#e8d8e0',icon:'🔋'},{label:'Sacoche complète',tint:'#d0c0c8',icon:'🧰'}],
+    owner:{name:'Antoine S.',avatar:'🧑',job:'Bricoleur passionné',rating:4.9,nbLocations:62,since:'oct. 2023',responseTime:'< 1 h',verified:true},
+    reviews:[
+      {author:'Camille D.',avatar:'👩',role:'Particulière',rating:5,date:'Il y a 3 jours',text:'Parfaite pour mes meubles IKEA et étagères. Légère, puissante, Antoine disponible immédiatement.'},
+      {author:'Yvan K.',avatar:'🧑',role:'Bricoleur',rating:5,date:'Il y a 1 semaine',text:'Excellent rapport qualité/prix. Les 2 batteries permettent de travailler sans interruption.'},
+      {author:'Thomas R.',avatar:'👨‍🔧',role:'Auto-entrepreneur',rating:5,date:'Il y a 2 semaines',text:'Outil impeccable. Antoine très sérieux et ponctuel. À garder dans son répertoire.'},
+      {author:'Lisa M.',avatar:'👩',role:'Particulière',rating:4,date:'Il y a 3 semaines',text:'Très bien pour mon projet parquet. Un peu puissante pour du travail fin, mais globalement top.'},
+    ],
+    bookedDays:[],
+    pendingDays:['2026-07-04','2026-07-05'],
+  },
+  6: {
+    emoji:'🏋️', bg:'#c8d8c0', name:'Palan électrique 500 kg',
+    brand:'Kito', model:'ER2M', cat:'Levage & manutention', catIcon:'🏗️',
+    dispo:true, price:45, caution:300, dist:'5.4 km', rating:4.5, reviewCount:6,
+    arrond:'20ᵉ arrondissement · Paris',
+    desc:'Palan électrique Kito ER2M 500 kg. Hauteur de levée 6 m, télécommande filaire 3 m. Conforme NF EN 14492-2. Usage professionnel uniquement. Idéal chantier, atelier, déménagement de machines.',
+    highlights:['Charge max 500 kg','Hauteur levée 6 m','Télécommande filaire 3 m','Norme NF EN 14492-2'],
+    specs:[['Charge max','500 kg'],['Hauteur de levée','6,0 m'],['Vitesse levée','4 m/min'],['Puissance moteur','0,75 kW'],['Alimentation','230 V monophasé'],['Poids palan','19 kg']],
+    accessories:['Télécommande filaire 3 m','Crochet double sécurité','Câble de suspension réglable','Certificat de conformité NF'],
+    conditions:'Usage réservé aux professionnels. Arrimage sous responsabilité du locataire. Contrôle annuel à jour. Caution intégrale en cas d\'incident.',
+    photos:[{label:'Vue principale',tint:'#c8d8c0',icon:'🏋️'},{label:'Crochet & câble',tint:'#b8c8b0',icon:'🪝'},{label:'Télécommande',tint:'#d8e8d0',icon:'🎮'},{label:'Certificat & docs',tint:'#c0d0b8',icon:'📄'}],
+    owner:{name:'Franck O.',avatar:'👨‍🏭',job:'Responsable technique entrepôt',rating:4.6,nbLocations:12,since:'avr. 2024',responseTime:'< 4 h',verified:true},
+    reviews:[
+      {author:'David L.',avatar:'👨',role:'Chef de chantier',rating:5,date:'Il y a 1 semaine',text:'Parfait pour lever nos poutres métalliques. Matériel conforme, certifié. Franck très professionnel.'},
+      {author:'Steve B.',avatar:'🧑',role:'Artisan',rating:4,date:'Il y a 1 mois',text:'Bon palan, bien entretenu. Télécommande impeccable. Livraison arrangée facilement.'},
+    ],
+    bookedDays:['2026-07-22'],
+    pendingDays:['2026-08-05','2026-08-06'],
+  },
 };
 
-const params = new URLSearchParams(location.search);
-const toolId = parseInt(params.get('id')) || 1;
-const tool   = TOOLS[toolId];
+/* ── STATE ── */
+const params  = new URLSearchParams(location.search);
+const toolId  = parseInt(params.get('id')) || 1;
+const tool    = TOOLS[toolId];
 const session = JSON.parse(localStorage.getItem('pr_session') || 'null');
-let selStart = null, selEnd = null;
+let selStart  = null, selEnd = null, galIdx = 0;
+
 const MONTHS_FR = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
 
-if (!tool) location.href = 'port-reuse-final.html';
+if (!tool) { location.href = 'index.html'; }
 
+/* ── INIT ── */
 document.title = `PORT & REUSE — ${tool.name}`;
 document.getElementById('breadToolName').textContent = tool.name;
 if (session) document.getElementById('navAuthLink').textContent = `👤 ${session.prenom}`;
 
-renderTitleBlock(); renderGallery(); renderDesc(); renderOwner(); renderCalendar(); renderReviews(); renderPriceCard(); renderMobileCta();
+renderTitleBlock();
+renderGallery();
+renderDesc();
+renderOwner();
+renderCalendar();
+renderReviews();
+renderPriceCard();
+renderMobileCta();
 
+/* ── TITLE BLOCK ── */
 function renderTitleBlock() {
+  const stars = '★'.repeat(Math.floor(tool.rating)) + (tool.rating % 1 >= 0.5 ? '½' : '');
   document.getElementById('titleBlock').innerHTML = `
     <div class="tool-cat-badge">${tool.catIcon} ${tool.cat}</div>
     <h1 class="tool-title">${tool.name}</h1>
     <div class="tool-meta-row">
       <div class="tool-meta-item"><span style="color:#f5a623">${'★'.repeat(Math.floor(tool.rating))}</span> <strong>${tool.rating}</strong> (${tool.reviewCount} avis)</div>
       <div class="tool-meta-item">📍 ${tool.dist} · ${tool.arrond}</div>
-      <span class="dispo-badge ${tool.dispo?'yes':'no'}">${tool.dispo?'✓ Disponible':'✗ Actuellement loué'}</span>
+      <span class="dispo-badge ${tool.dispo ? 'yes' : 'no'}">${tool.dispo ? '✓ Disponible' : '✗ Actuellement loué'}</span>
       <div class="tool-meta-item">🏷️ <strong>${tool.brand}</strong> ${tool.model}</div>
     </div>`;
 }
 
+/* ── GALLERY ── */
 function renderGallery() {
+  const main = document.getElementById('galMain');
+  const thumbs = document.getElementById('galThumbs');
   renderMainPhoto(0);
-  document.getElementById('galThumbs').innerHTML = tool.photos.map((p,i)=>`
+  thumbs.innerHTML = tool.photos.map((p, i) => `
     <div class="gal-thumb ${i===0?'active':''}" onclick="selectPhoto(${i})" id="thumb-${i}" style="background:${p.tint}">
-      ${p.icon}<div class="gal-thumb-label">${p.label}</div>
+      ${p.icon}
+      <div class="gal-thumb-label">${p.label}</div>
     </div>`).join('');
 }
+
 function renderMainPhoto(idx) {
   const p = tool.photos[idx];
   document.getElementById('galMain').innerHTML = `
     <div class="gal-main-bg" style="background:${p.tint}">${tool.emoji}</div>
     <div class="gal-main-label">${p.label}</div>`;
 }
+
 function selectPhoto(idx) {
+  galIdx = idx;
   renderMainPhoto(idx);
-  document.querySelectorAll('.gal-thumb').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  document.querySelectorAll('.gal-thumb').forEach((t,i) => t.classList.toggle('active', i===idx));
 }
 
+/* ── DESCRIPTION ── */
 function renderDesc() {
+  const hlHTML = tool.highlights.map(h => `<div class="ds-hl">✓ ${h}</div>`).join('');
+  const specRows = tool.specs.map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('');
+  const accHTML = tool.accessories.map(a => `<span class="acc-tag">${a}</span>`).join('');
   document.getElementById('descSection').innerHTML = `
     <div class="ds-title">📋 Description & caractéristiques</div>
     <p class="ds-desc">${tool.desc}</p>
-    <div class="ds-highlights">${tool.highlights.map(h=>`<div class="ds-hl">✓ ${h}</div>`).join('')}</div>
+    <div class="ds-highlights">${hlHTML}</div>
     <div style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin-bottom:.6rem">Fiche technique</div>
-    <table class="spec-table">${tool.specs.map(([k,v])=>`<tr><td>${k}</td><td>${v}</td></tr>`).join('')}</table>
+    <table class="spec-table">${specRows}</table>
     <div style="font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--text-muted);margin:1rem 0 .5rem">Accessoires inclus</div>
-    <div class="acc-list">${tool.accessories.map(a=>`<span class="acc-tag">${a}</span>`).join('')}</div>
+    <div class="acc-list">${accHTML}</div>
     <div class="condition-box">⚠️ <strong>Conditions :</strong> ${tool.conditions}</div>`;
 }
 
+/* ── OWNER ── */
 function renderOwner() {
   const o = tool.owner;
+  const stars = '★'.repeat(Math.floor(o.rating)) + (o.rating % 1 >= 0.5 ? '½' : '');
   document.getElementById('ownerSection').innerHTML = `
     <div class="ds-title">👤 Propriétaire</div>
     <div class="owner-flex">
@@ -273,7 +478,7 @@ function renderOwner() {
       <div>
         <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.2rem">
           <div class="owner-name">${o.name}</div>
-          ${o.verified?'<span class="owner-verified">✓ Vérifié</span>':''}
+          ${o.verified ? '<span class="owner-verified">✓ Vérifié</span>' : ''}
         </div>
         <div class="owner-job">${o.job}</div>
         <div style="color:#f5a623;font-size:.8rem">${'★'.repeat(Math.floor(o.rating))} <span style="color:var(--text-muted);font-size:.75rem">${o.rating} · Membre depuis ${o.since}</span></div>
@@ -287,157 +492,206 @@ function renderOwner() {
     <button class="btn-msg" onclick="handleMsg()">💬 Envoyer un message</button>`;
 }
 
+/* ── CALENDAR ── */
 function renderCalendar() {
   const now = new Date();
   const months = [
-    {y:now.getFullYear(),m:now.getMonth()},
-    {y:now.getMonth()===11?now.getFullYear()+1:now.getFullYear(),m:(now.getMonth()+1)%12}
+    { y: now.getFullYear(), m: now.getMonth() },
+    { y: now.getMonth() === 11 ? now.getFullYear()+1 : now.getFullYear(), m: (now.getMonth()+1) % 12 },
   ];
-  document.getElementById('availMonths').innerHTML = months.map(({y,m})=>buildMonth(y,m)).join('');
-}
-function buildMonth(y,m) {
-  const today = new Date(); today.setHours(0,0,0,0);
-  const firstDow = new Date(y,m,1).getDay();
-  const offset = firstDow===0?6:firstDow-1;
-  const total = new Date(y,m+1,0).getDate();
-  const booked = new Set(tool.bookedDays), pending = new Set(tool.pendingDays);
-  let cells = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'].map(h=>`<div class="avail-hd">${h}</div>`).join('');
-  for(let i=0;i<offset;i++) cells+='<div class="avail-day avail-empty"></div>';
-  for(let d=1;d<=total;d++){
-    const key=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-    const date=new Date(y,m,d);
-    const isPast=date<today, isToday=date.getTime()===today.getTime();
-    const isBooked=booked.has(key), isPending=pending.has(key);
-    const isSel=key===selStart||key===selEnd;
-    const isRange=selStart&&selEnd&&key>selStart&&key<selEnd;
-    let cls='avail-day';
-    if(isPast) cls+=' avail-past';
-    if(isToday) cls+=' avail-today';
-    if(isBooked) cls+=' avail-booked';
-    else if(isPending) cls+=' avail-pending';
-    else if(isSel) cls+=' avail-selected';
-    else if(isRange) cls+=' avail-range';
-    const clickable=!isPast&&!isBooked&&!isPending;
-    cells+=`<div class="${cls}" ${clickable?`onclick="selectDay('${key}')"`:''}>${d}</div>`;
-  }
-  return `<div class="avail-month"><div class="avail-month-title">${MONTHS_FR[m]} ${y}</div><div class="avail-grid">${cells}</div></div>`;
-}
-function selectDay(key) {
-  if(!selStart||(selStart&&selEnd)){selStart=key;selEnd=null;}
-  else{ if(key<=selStart){selStart=key;selEnd=null;} else{selEnd=key;} }
-  renderCalendar();
-  if(selStart&&selEnd) syncDatesToForm();
-}
-function syncDatesToForm(){
-  const s=document.getElementById('inputStart'), e=document.getElementById('inputEnd');
-  if(s) s.value=selStart; if(e) e.value=selEnd; calcPrice();
+  document.getElementById('availMonths').innerHTML = months.map(({y,m}) => buildMonth(y,m)).join('');
 }
 
+function buildMonth(y, m) {
+  const today = new Date(); today.setHours(0,0,0,0);
+  const firstDow = new Date(y,m,1).getDay();
+  const offset   = firstDow === 0 ? 6 : firstDow - 1;
+  const total    = new Date(y,m+1,0).getDate();
+  const allBooked  = new Set(tool.bookedDays);
+  const allPending = new Set(tool.pendingDays);
+
+  let cells = ['Lun','Mar','Mer','Jeu','Ven','Sam','Dim']
+    .map(h => `<div class="avail-hd">${h}</div>`).join('');
+
+  for (let i = 0; i < offset; i++) cells += '<div class="avail-day avail-empty"></div>';
+
+  for (let d = 1; d <= total; d++) {
+    const key = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const date = new Date(y,m,d);
+    const isPast    = date < today;
+    const isToday   = date.getTime() === today.getTime();
+    const isBooked  = allBooked.has(key);
+    const isPending = allPending.has(key);
+    const isSel     = key === selStart || key === selEnd;
+    const isRange   = selStart && selEnd && key > selStart && key < selEnd;
+
+    let cls = 'avail-day';
+    if (isPast)    cls += ' avail-past';
+    if (isToday)   cls += ' avail-today';
+    if (isBooked)  cls += ' avail-booked';
+    else if (isPending) cls += ' avail-pending';
+    else if (isSel) cls += ' avail-selected';
+    else if (isRange) cls += ' avail-range';
+
+    const clickable = !isPast && !isBooked && !isPending;
+    cells += `<div class="${cls}" ${clickable ? `onclick="selectDay('${key}')"` : ''}>${d}</div>`;
+  }
+
+  return `<div class="avail-month">
+    <div class="avail-month-title">${MONTHS_FR[m]} ${y}</div>
+    <div class="avail-grid">${cells}</div>
+  </div>`;
+}
+
+function selectDay(key) {
+  if (!selStart || (selStart && selEnd)) {
+    selStart = key; selEnd = null;
+  } else {
+    if (key <= selStart) { selStart = key; selEnd = null; }
+    else { selEnd = key; }
+  }
+  renderCalendar();
+  if (selStart && selEnd) syncDatesToForm();
+}
+
+function syncDatesToForm() {
+  const s = document.getElementById('inputStart');
+  const e = document.getElementById('inputEnd');
+  if (s) s.value = selStart;
+  if (e) e.value = selEnd;
+  calcPrice();
+}
+
+/* ── REVIEWS ── */
 function renderReviews() {
-  const revs=tool.reviews;
-  const items=revs.map(r=>`
+  const revs = tool.reviews;
+  const avg  = tool.rating;
+  const ct   = tool.reviewCount;
+  const starsBar = n => `<div class="review-bar-row">
+    <div class="review-bar-label">${n}</div>
+    <div class="review-bar-track"><div class="review-bar-fill" style="width:${n>=4?85:n===3?10:3}%"></div></div>
+  </div>`;
+
+  const items = revs.map(r => `
     <div class="review-item">
       <div class="review-header">
         <div class="review-avatar">${r.avatar}</div>
-        <div class="review-author">${r.author} <span style="font-size:.72rem;color:var(--text-muted);font-weight:400">· ${r.role}</span></div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:.4rem">
+        <div class="review-meta">
+          <div class="review-author">${r.author} <span style="font-size:.72rem;color:var(--text-muted);font-weight:400">· ${r.role}</span></div>
+        </div>
+        <div class="review-rating-date">
           <span class="review-stars-sm">${'★'.repeat(r.rating)}</span>
           <span class="review-date">${r.date}</span>
         </div>
       </div>
       <div class="review-text">« ${r.text} »</div>
     </div>`).join('');
+
   document.getElementById('reviewsSection').innerHTML = `
-    <div class="ds-title">⭐ Avis (${tool.reviewCount})</div>
+    <div class="ds-title">⭐ Avis (${ct})</div>
     <div class="review-summary">
       <div>
-        <div class="review-big-rating">${tool.rating}</div>
-        <div class="review-stars">${'★'.repeat(Math.floor(tool.rating))}</div>
-        <div class="review-count">${tool.reviewCount} avis vérifiés</div>
+        <div class="review-big-rating">${avg}</div>
+        <div class="review-stars">${'★'.repeat(Math.floor(avg))}</div>
+        <div class="review-count">${ct} avis vérifiés</div>
       </div>
-      <div class="review-bars">${[5,4,3,2,1].map(n=>`<div class="review-bar-row"><div class="review-bar-label">${n}</div><div class="review-bar-track"><div class="review-bar-fill" style="width:${n>=4?85:n===3?10:3}%"></div></div></div>`).join('')}</div>
+      <div class="review-bars">${[5,4,3,2,1].map(starsBar).join('')}</div>
     </div>
     <div class="review-list">${items}</div>`;
 }
 
+/* ── PRICE CARD ── */
 function renderPriceCard() {
-  const loggedIn=!!session;
+  const isLoggedIn = !!session;
+  const disabledAttr = (!tool.dispo || !isLoggedIn) ? 'disabled' : '';
   document.getElementById('priceCard').innerHTML = `
-    <div class="price-main"><div class="price-amount">${tool.price} €</div><div class="price-period">/ jour</div></div>
+    <div class="price-main">
+      <div class="price-amount">${tool.price} €</div>
+      <div class="price-period">/ jour</div>
+    </div>
     <div class="price-caution">+ caution ${tool.caution} € (remboursée au retour)</div>
     <div class="price-rating-row">
       <span class="price-rating-stars">${'★'.repeat(Math.floor(tool.rating))}</span>
       <span class="price-rating-num">${tool.rating}</span>
       <span class="price-rating-ct">(${tool.reviewCount} avis) · ${tool.dist}</span>
     </div>
-    ${tool.dispo?`
+    ${tool.dispo ? `
     <div class="form-date-row">
-      <div><label class="form-label">Début</label><input class="form-input" type="date" id="inputStart" onchange="calcPrice()" /></div>
-      <div><label class="form-label">Fin</label><input class="form-input" type="date" id="inputEnd" onchange="calcPrice()" /></div>
+      <div>
+        <label class="form-label">Début</label>
+        <input class="form-input" type="date" id="inputStart" onchange="calcPrice()" />
+      </div>
+      <div>
+        <label class="form-label">Fin</label>
+        <input class="form-input" type="date" id="inputEnd" onchange="calcPrice()" />
+      </div>
     </div>
     <div class="price-breakdown" id="priceBreakdown">
       <div class="price-breakdown-row"><span>Durée</span><span id="bdDays">—</span></div>
       <div class="price-breakdown-row"><span>Location (${tool.price} €/j)</span><span id="bdRent">—</span></div>
       <div class="price-breakdown-row"><span>Caution (remboursée)</span><span>${tool.caution} €</span></div>
       <div class="price-breakdown-total"><span>Total à payer</span><span id="bdTotal">—</span></div>
-    </div>`:
-    `<div style="background:rgba(232,96,44,.08);border-radius:8px;padding:.7rem;text-align:center;font-size:.82rem;color:var(--terracotta);font-weight:600;margin-bottom:1rem">Actuellement loué</div>`}
-    <button class="btn-reserve" id="btnReserve" ${(!tool.dispo||!loggedIn)?'disabled':''} onclick="handleReserve()">
-      ${!loggedIn?'🔒 Se connecter pour réserver':tool.dispo?'Réserver →':'Indisponible'}
+    </div>` : `<div style="background:rgba(232,96,44,.08);border-radius:8px;padding:.7rem;text-align:center;font-size:.82rem;color:var(--terracotta);font-weight:600;margin-bottom:1rem">Actuellement loué · Sélectionnez des dates disponibles</div>`}
+    <button class="btn-reserve" id="btnReserve" ${disabledAttr} onclick="handleReserve()">
+      ${!isLoggedIn ? '🔒 Se connecter pour réserver' : tool.dispo ? 'Réserver →' : 'Indisponible'}
     </button>
-    ${!loggedIn?`<div class="reserve-auth-note">Pas encore de compte ? <a href="auth.html">S'inscrire gratuitement</a></div>`:''}
+    ${!isLoggedIn ? `<div class="reserve-auth-note">Pas encore de compte ? <a href="auth.html">S'inscrire gratuitement</a></div>` : ''}
     <div class="price-guarantees">
-      <div class="pg-item">🛡️ Caution sécurisée — libérée sous 24h</div>
+      <div class="pg-item">🛡️ Caution sécurisée — libérée sous 24h après retour</div>
       <div class="pg-item">✅ Propriétaire vérifié PORT & REUSE</div>
       <div class="pg-item">📄 Bon de remise numérique inclus</div>
       <div class="pg-item">🏢 Couvert par l'assurance Allianz</div>
     </div>`;
-  if(selStart&&selEnd) syncDatesToForm();
+  if (selStart && selEnd) syncDatesToForm();
 }
 
-function renderMobileCta(){
-  document.getElementById('mobilePrice').innerHTML=`${tool.price} € <span>/jour</span>`;
-  document.getElementById('mobileRating').textContent=`⭐ ${tool.rating} · ${tool.reviewCount} avis`;
+function renderMobileCta() {
+  document.getElementById('mobilePrice').innerHTML = `${tool.price} € <span>/jour</span>`;
+  document.getElementById('mobileRating').textContent = `⭐ ${tool.rating} · ${tool.reviewCount} avis`;
 }
 
-function calcPrice(){
-  const s=document.getElementById('inputStart')?.value;
-  const e=document.getElementById('inputEnd')?.value;
-  if(!s||!e||e<=s) return;
-  const days=Math.max(1,Math.round((new Date(e)-new Date(s))/86400000));
-  const rent=days*tool.price;
-  document.getElementById('bdDays').textContent=`${days} jour${days>1?'s':''}`;
-  document.getElementById('bdRent').textContent=`${rent} €`;
-  document.getElementById('bdTotal').textContent=`${rent} € + caution`;
-  document.getElementById('priceBreakdown').style.display='block';
-  selStart=s; selEnd=e; renderCalendar();
+/* ── PRICE CALCULATION ── */
+function calcPrice() {
+  const s = document.getElementById('inputStart')?.value;
+  const e = document.getElementById('inputEnd')?.value;
+  if (!s || !e || e <= s) return;
+  const days = Math.max(1, Math.round((new Date(e) - new Date(s)) / 86400000));
+  const rent = days * tool.price;
+  document.getElementById('bdDays').textContent   = `${days} jour${days>1?'s':''}`;
+  document.getElementById('bdRent').textContent   = `${rent} €`;
+  document.getElementById('bdTotal').textContent  = `${rent} € + caution`;
+  document.getElementById('priceBreakdown').style.display = 'block';
+  selStart = s; selEnd = e;
+  renderCalendar();
 }
 
-function handleReserve(){
-  if(!session){location.href='auth.html';return;}
-  const s=document.getElementById('inputStart')?.value;
-  const e=document.getElementById('inputEnd')?.value;
-  if(!s||!e||e<=s){showToast('📅','Sélectionnez des dates valides');return;}
-  showToast('✅',`Réservation envoyée à ${tool.owner.name} !`);
-  document.getElementById('btnReserve').textContent='✓ Demande envoyée';
-  document.getElementById('btnReserve').disabled=true;
+/* ── ACTIONS ── */
+function handleReserve() {
+  if (!session) { location.href = 'auth.html'; return; }
+  const s = document.getElementById('inputStart')?.value;
+  const e = document.getElementById('inputEnd')?.value;
+  if (!s || !e || e <= s) { showToast('📅', 'Sélectionnez des dates valides'); return; }
+  showToast('✅', `Réservation envoyée à ${tool.owner.name} !`);
+  document.getElementById('btnReserve').textContent = '✓ Demande envoyée';
+  document.getElementById('btnReserve').disabled = true;
 }
 
-function handleMsg(){
-  if(!session){location.href='auth.html';return;}
-  showToast('💬',`Message envoyé à ${tool.owner.name}`);
+function handleMsg() {
+  if (!session) { location.href = 'auth.html'; return; }
+  showToast('💬', `Message envoyé à ${tool.owner.name}`);
 }
 
-function scrollToCalendar(){
-  document.getElementById('calSection').scrollIntoView({behavior:'smooth'});
+function scrollToCalendar() {
+  document.getElementById('calSection').scrollIntoView({ behavior:'smooth' });
 }
 
-function showToast(icon,msg){
-  const t=document.getElementById('toast');
-  document.getElementById('toastIcon').textContent=icon;
-  document.getElementById('toastMsg').textContent=msg;
+/* ── TOAST ── */
+function showToast(icon, msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastIcon').textContent = icon;
+  document.getElementById('toastMsg').textContent  = msg;
   t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),4000);
+  setTimeout(() => t.classList.remove('show'), 4000);
 }
 </script>
 </body>
