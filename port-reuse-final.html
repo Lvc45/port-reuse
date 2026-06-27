@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PORT & REUSE — Location d'outils BTP entre pros et particuliers</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     :root {
       --forest:    #1A2E1A;
@@ -196,12 +195,7 @@
     .lend-cta { background: var(--forest); display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
     .lend-cta .section-title { color: var(--white); margin-bottom: .5rem; }
     .lend-cta .section-sub { color: var(--pale); opacity: .8; }
-    .lend-form { background: rgba(255,255,255,.06); border: 1px solid rgba(200,216,176,.2); border-radius: 16px; padding: 2rem; min-width: 320px; flex: 1; max-width: 480px; position: relative; }
-    .lend-lock-overlay { position: absolute; inset: -1px; border-radius: 16px; background: rgba(10,22,10,.88); backdrop-filter: blur(7px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 2.5rem 2rem; text-align: center; z-index: 2; }
-    .lend-lock-icon { font-size: 2.6rem; }
-    .lend-lock-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--white); line-height: 1.2; }
-    .lend-lock-sub { font-size: .85rem; color: rgba(200,216,176,.6); max-width: 260px; line-height: 1.55; }
-    .lend-lock-divider { width: 40px; height: 2px; background: rgba(200,216,176,.15); border-radius: 2px; }
+    .lend-form { background: rgba(255,255,255,.06); border: 1px solid rgba(200,216,176,.2); border-radius: 16px; padding: 2rem; min-width: 320px; flex: 1; max-width: 480px; }
     .form-row { margin-bottom: 1rem; }
     label { display: block; font-size: .8rem; font-weight: 600; color: var(--pale); margin-bottom: .4rem; }
     input, select, textarea { width: 100%; padding: .65rem .9rem; border-radius: 8px; border: 1.5px solid rgba(200,216,176,.25); background: rgba(255,255,255,.08); color: var(--white); font-family: 'Inter', sans-serif; font-size: .9rem; outline: none; transition: border-color .2s; }
@@ -249,39 +243,22 @@
 
     /* MAP */
     .map-section { background: var(--white); }
-    .map-big { width: 100%; height: 480px; border-radius: 16px; margin-top: 2.5rem; overflow: hidden; position: relative; z-index: 1; box-shadow: 0 8px 36px rgba(26,46,26,.2); }
-
-    /* Leaflet overrides */
-    .leaflet-control-zoom { border: 1px solid rgba(200,216,176,.15) !important; box-shadow: 0 4px 12px rgba(0,0,0,.4) !important; }
-    .leaflet-control-zoom a { background: rgba(26,46,26,.92) !important; color: var(--pale) !important; border-bottom: 1px solid rgba(200,216,176,.1) !important; font-size: 1rem !important; line-height: 26px !important; }
-    .leaflet-control-zoom a:hover { background: rgba(74,124,89,.5) !important; color: var(--white) !important; }
-    .leaflet-control-attribution { background: rgba(26,46,26,.7) !important; color: rgba(200,216,176,.35) !important; font-size: .6rem !important; border-radius: 4px 0 0 0 !important; }
-    .leaflet-control-attribution a { color: rgba(200,216,176,.45) !important; }
-
-    /* Arrondissement number labels */
-    .arr-label-tt { background: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; font-family: 'Playfair Display', serif; font-size: .75rem; font-weight: 700; color: rgba(200,216,176,.5); pointer-events: none; transition: color .2s; }
-    .arr-label-tt::before { display: none !important; }
-
-    /* Map popups */
-    .port-popup .leaflet-popup-content-wrapper { background: var(--forest); border: 1px solid rgba(200,216,176,.2); border-radius: 14px; box-shadow: 0 8px 30px rgba(0,0,0,.55); padding: 0; }
-    .port-popup .leaflet-popup-content { margin: 0; }
-    .port-popup .leaflet-popup-tip-container .leaflet-popup-tip { background: var(--forest); }
-    .port-popup .leaflet-popup-close-button { color: rgba(200,216,176,.4) !important; font-size: 1.1rem !important; top: .6rem !important; right: .6rem !important; }
-    .mp-wrap { padding: 1rem 1.1rem; }
-    .mp-badge { display: inline-block; font-size: .63rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; padding: .2rem .6rem; border-radius: 20px; margin-bottom: .5rem; }
-    .mp-dispo { background: rgba(74,124,89,.3); color: var(--pale); }
-    .mp-loue  { background: rgba(232,96,44,.2); color: var(--terracotta); }
-    .mp-name  { font-weight: 600; font-size: .9rem; color: var(--pale); margin-bottom: .35rem; line-height: 1.3; }
-    .mp-price { font-size: .78rem; color: rgba(200,216,176,.55); margin-bottom: .75rem; }
-    .mp-btn   { width: 100%; padding: .45rem; border-radius: 7px; background: var(--terracotta); color: var(--white); font-weight: 600; font-size: .8rem; border: none; cursor: pointer; transition: background .2s; font-family: 'Inter', sans-serif; }
-    .mp-btn:hover { background: var(--terracotta-dark); }
-
-    /* Custom legend control */
-    .map-legend-ctrl { background: rgba(26,46,26,.92); border: 1px solid rgba(200,216,176,.15); border-radius: 12px; padding: 1rem 1.2rem; backdrop-filter: blur(10px); pointer-events: none; }
-    .mlc-title { color: var(--pale); font-size: .82rem; font-weight: 700; margin-bottom: .7rem; letter-spacing: .04em; }
-    .mlc-row { display: flex; align-items: center; gap: .55rem; font-size: .76rem; color: rgba(200,216,176,.65); margin-bottom: .4rem; }
-    .mlc-row:last-child { margin-bottom: 0; }
-    .mlc-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
+    .map-big { width: 100%; height: 420px; border-radius: 16px; background: #1e3a2a; margin-top: 2.5rem; position: relative; overflow: hidden; }
+    .map-big::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(74,124,89,.25) 1px, transparent 1px), linear-gradient(90deg, rgba(74,124,89,.25) 1px, transparent 1px); background-size: 50px 50px; }
+    .map-overlay { position: absolute; top: 1.5rem; left: 1.5rem; background: rgba(26,46,26,.9); border: 1px solid rgba(200,216,176,.2); border-radius: 12px; padding: 1.2rem; min-width: 220px; backdrop-filter: blur(8px); }
+    .map-overlay h4 { color: var(--pale); font-size: .85rem; font-weight: 700; margin-bottom: .8rem; }
+    .map-legend-item { display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem; font-size: .78rem; color: rgba(200,216,176,.7); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .road-h, .road-v { position: absolute; background: rgba(74,124,89,.5); }
+    .road-h { height: 3px; left: 0; right: 0; }
+    .road-v { width: 3px; top: 0; bottom: 0; }
+    .pin { position: absolute; width: 28px; height: 28px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); display: flex; align-items: center; justify-content: center; animation: pinBounce 2s ease-in-out infinite; cursor: pointer; }
+    .pin::after { content: attr(data-icon); transform: rotate(45deg); font-size: .75rem; }
+    .pin.terracotta { background: var(--terracotta); box-shadow: 0 4px 12px rgba(232,96,44,.5); }
+    .pin.sage { background: var(--sage); box-shadow: 0 4px 12px rgba(74,124,89,.5); }
+    .pin.pale { background: var(--pale); box-shadow: 0 4px 12px rgba(200,216,176,.5); }
+    @keyframes pinBounce { 0%, 100% { transform: rotate(-45deg) translateY(0); } 50% { transform: rotate(-45deg) translateY(-4px); } }
+    .pin-label { position: absolute; background: var(--forest); color: var(--pale); font-size: .6rem; font-weight: 600; padding: .2rem .5rem; border-radius: 4px; white-space: nowrap; pointer-events: none; }
 
     /* IMPACT */
     .impact { background: var(--pale); }
@@ -366,7 +343,7 @@
       .hero-search { flex-direction: column; }
       .pricing-grid { grid-template-columns: 1fr; }
     }
-    @media (prefers-reduced-motion: reduce) { .showcase-card { animation: none; } }
+    @media (prefers-reduced-motion: reduce) { .pin, .showcase-card { animation: none; } }
   </style>
 </head>
 <body>
@@ -518,14 +495,6 @@
     </div>
   </div>
   <div class="lend-form">
-    <!-- Overlay affiché quand non connecté -->
-    <div class="lend-lock-overlay" id="lendLockOverlay">
-      <div class="lend-lock-icon">🔒</div>
-      <div class="lend-lock-title">Connectez-vous pour publier un outil</div>
-      <div class="lend-lock-divider"></div>
-      <p class="lend-lock-sub">Créez votre compte gratuit et commencez à générer des revenus en 3 minutes.</p>
-      <a href="auth.html" class="btn-primary" style="display:inline-block;text-decoration:none;font-size:.9rem">Se connecter / S'inscrire →</a>
-    </div>
     <form id="lendForm" onsubmit="handleLend(event)">
       <div class="form-row"><label>Nom de l'outil</label><input type="text" placeholder="Ex : Perceuse à percussion Bosch 18V" required /></div>
       <div class="form-row-2">
@@ -558,10 +527,169 @@
 
 <!-- CARTE -->
 <section class="map-section" id="carte">
-  <div class="section-eyebrow">Géolocalisation</div>
-  <h2 class="section-title">Outils disponibles autour de vous</h2>
-  <p class="section-sub">Carte interactive de Paris — cliquez sur un arrondissement pour explorer les outils disponibles à moins de 10 km.</p>
-  <div class="map-big" id="bigMap"></div>
+  <div class="section-eyebrow">Géolocalisation — Paris</div>
+  <h2 class="section-title">Outils disponibles à Paris</h2>
+  <p class="section-sub">La plateforme couvre Paris intra-muros (75001–75020). Cliquez sur un marqueur pour voir le détail de l'outil.</p>
+
+  <div class="map-big" id="bigMap" style="height:500px;background:#152818;">
+
+    <svg viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0;">
+      <!-- Fond banlieue -->
+      <rect width="560" height="480" fill="#152818"/>
+      <!-- Zones périphériques plus sombres -->
+      <rect x="0" y="0" width="560" height="95" fill="#0e1e10" opacity=".8"/>
+      <rect x="0" y="345" width="560" height="135" fill="#0e1e10" opacity=".8"/>
+      <rect x="0" y="95" width="90" height="250" fill="#0e1e10" opacity=".8"/>
+      <rect x="395" y="95" width="165" height="250" fill="#0e1e10" opacity=".8"/>
+
+      <!-- Seine -->
+      <path d="M55,242 Q130,215 195,232 Q255,248 318,235 Q378,222 438,242 Q488,256 518,250" stroke="#1a4a7a" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M55,242 Q130,215 195,232 Q255,248 318,235 Q378,222 438,242 Q488,256 518,250" stroke="#2a6aaa" stroke-width="4" fill="none" stroke-linecap="round" opacity=".4"/>
+      <text x="140" y="237" font-size="9" fill="#2a6aaa" opacity=".8" font-style="italic">Seine</text>
+      <text x="398" y="232" font-size="9" fill="#2a6aaa" opacity=".8" font-style="italic">Seine</text>
+
+      <!-- ARRONDISSEMENTS -->
+      <!-- 1er -->
+      <polygon points="238,200 268,194 276,215 268,229 244,226 237,212" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="255" y="215" text-anchor="middle" font-size="7.5" fill="#8ab890" font-weight="600">1er</text>
+      <!-- 2e -->
+      <polygon points="268,194 297,190 302,210 276,215" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="284" y="205" text-anchor="middle" font-size="7" fill="#8ab890">2e</text>
+      <!-- 3e -->
+      <polygon points="297,190 328,186 333,208 302,210" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="314" y="201" text-anchor="middle" font-size="7" fill="#8ab890">3e</text>
+      <!-- 4e -->
+      <polygon points="276,215 302,210 307,233 280,236 268,229" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="289" y="225" text-anchor="middle" font-size="7" fill="#8ab890">4e</text>
+      <!-- 5e -->
+      <polygon points="244,226 268,229 280,236 273,260 248,262 234,246" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="258" y="246" text-anchor="middle" font-size="7" fill="#8ab890">5e</text>
+      <!-- 6e -->
+      <polygon points="216,237 244,226 234,246 248,262 222,264 207,250" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="229" y="251" text-anchor="middle" font-size="7" fill="#8ab890">6e</text>
+      <!-- 7e -->
+      <polygon points="183,222 216,237 207,250 222,264 200,274 173,257 169,240" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="196" y="251" text-anchor="middle" font-size="7" fill="#8ab890">7e</text>
+      <!-- 8e -->
+      <polygon points="172,165 214,157 226,187 205,200 183,197 169,182" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="197" y="181" text-anchor="middle" font-size="7" fill="#8ab890">8e</text>
+      <!-- 9e -->
+      <polygon points="244,157 276,153 282,175 268,194 238,191 237,172" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="260" y="175" text-anchor="middle" font-size="7" fill="#8ab890">9e</text>
+      <!-- 10e -->
+      <polygon points="297,150 328,147 333,172 328,186 297,190 293,170" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="312" y="170" text-anchor="middle" font-size="7" fill="#8ab890">10e</text>
+      <!-- 11e -->
+      <polygon points="328,186 358,182 365,208 353,228 333,232 333,208" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="346" y="208" text-anchor="middle" font-size="7" fill="#8ab890">11e</text>
+      <!-- 12e -->
+      <polygon points="333,232 353,228 373,246 368,278 338,284 307,267 307,242" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="340" y="260" text-anchor="middle" font-size="7" fill="#8ab890">12e</text>
+      <!-- 13e -->
+      <polygon points="248,262 273,260 280,236 307,242 307,267 297,290 260,294 240,280" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="275" y="276" text-anchor="middle" font-size="7" fill="#8ab890">13e</text>
+      <!-- 14e -->
+      <polygon points="207,250 222,264 200,274 173,257 174,272 197,287 222,287 240,280 220,267" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="207" y="273" text-anchor="middle" font-size="7" fill="#8ab890">14e</text>
+      <!-- 15e -->
+      <polygon points="143,237 169,240 173,257 174,272 197,287 190,312 154,317 128,292 126,262" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="160" y="285" text-anchor="middle" font-size="7" fill="#8ab890">15e</text>
+      <!-- 16e -->
+      <polygon points="106,167 152,156 169,182 183,197 169,240 143,237 126,222 103,202" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="140" y="200" text-anchor="middle" font-size="7" fill="#8ab890">16e</text>
+      <!-- 17e -->
+      <polygon points="152,124 206,116 214,157 172,165 152,156 138,142" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="177" y="142" text-anchor="middle" font-size="7" fill="#8ab890">17e</text>
+      <!-- 18e -->
+      <polygon points="206,116 256,110 278,130 278,153 244,157 237,172 214,157 206,116" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="244" y="138" text-anchor="middle" font-size="7" fill="#8ab890">18e</text>
+      <!-- 19e -->
+      <polygon points="278,110 318,106 342,128 333,150 328,147 297,150 282,175 278,153 278,130" fill="#243d2a" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="308" y="133" text-anchor="middle" font-size="7" fill="#8ab890">19e</text>
+      <!-- 20e -->
+      <polygon points="318,106 360,110 372,138 365,168 358,182 328,186 333,150 342,128" fill="#1f3824" stroke="#4A7C59" stroke-width="1.3" class="arr-poly"/>
+      <text x="345" y="150" text-anchor="middle" font-size="7" fill="#8ab890">20e</text>
+
+      <!-- Label Paris -->
+      <text x="248" y="90" text-anchor="middle" font-size="13" fill="#C8D8B0" font-weight="700" opacity=".35" font-family="Georgia,serif" letter-spacing="4">PARIS</text>
+
+      <!-- ── PINS outils ── -->
+      <!-- Marteau – 11e -->
+      <g class="tool-pin" style="cursor:pointer" onclick="showPin('🔨 Marteau piqueur SDS+ 1500W','11e arrondissement','12 €/jour','Disponible','#E8602C')">
+        <circle cx="346" cy="198" r="13" fill="#E8602C" opacity=".18"/>
+        <path d="M346,181 C340,181 334,187 334,194 C334,203 346,216 346,216 C346,216 358,203 358,194 C358,187 352,181 346,181Z" fill="#E8602C" stroke="#fff" stroke-width="1"/>
+        <text x="346" y="197" text-anchor="middle" font-size="9" fill="white">🔨</text>
+      </g>
+
+      <!-- Visseuse – 9e -->
+      <g class="tool-pin" style="cursor:pointer" onclick="showPin('🔩 Visseuse à choc 18V','9e arrondissement','8 €/jour','Disponible','#E8602C')">
+        <circle cx="260" cy="171" r="13" fill="#E8602C" opacity=".18"/>
+        <path d="M260,154 C254,154 248,160 248,167 C248,176 260,189 260,189 C260,189 272,176 272,167 C272,160 266,154 260,154Z" fill="#E8602C" stroke="#fff" stroke-width="1"/>
+        <text x="260" y="170" text-anchor="middle" font-size="9" fill="white">🔩</text>
+      </g>
+
+      <!-- Bétonière – 20e -->
+      <g class="tool-pin" style="cursor:pointer" onclick="showPin('⛏️ Bétonière 160L électrique','20e arrondissement','28 €/jour','Disponible','#E8602C')">
+        <circle cx="348" cy="148" r="13" fill="#E8602C" opacity=".18"/>
+        <path d="M348,131 C342,131 336,137 336,144 C336,153 348,166 348,166 C348,166 360,153 360,144 C360,137 354,131 348,131Z" fill="#E8602C" stroke="#fff" stroke-width="1"/>
+        <text x="348" y="147" text-anchor="middle" font-size="9" fill="white">⛏️</text>
+      </g>
+
+      <!-- Échafaudage – 15e -->
+      <g class="tool-pin" style="cursor:pointer" onclick="showPin('🏗️ Échafaudage roulant 4m','15e arrondissement','35 €/jour','Disponible','#4A7C59')">
+        <circle cx="160" cy="277" r="13" fill="#4A7C59" opacity=".18"/>
+        <path d="M160,260 C154,260 148,266 148,273 C148,282 160,295 160,295 C160,295 172,282 172,273 C172,266 166,260 160,260Z" fill="#4A7C59" stroke="#fff" stroke-width="1"/>
+        <text x="160" y="276" text-anchor="middle" font-size="9" fill="white">🏗️</text>
+      </g>
+
+      <!-- Palan – 16e -->
+      <g class="tool-pin" style="cursor:pointer" onclick="showPin('🏋️ Palan électrique 500kg','16e arrondissement','45 €/jour','Disponible','#4A7C59')">
+        <circle cx="136" cy="197" r="13" fill="#4A7C59" opacity=".18"/>
+        <path d="M136,180 C130,180 124,186 124,193 C124,202 136,215 136,215 C136,215 148,202 148,193 C148,186 142,180 136,180Z" fill="#4A7C59" stroke="#fff" stroke-width="1"/>
+        <text x="136" y="196" text-anchor="middle" font-size="9" fill="white">🏋️</text>
+      </g>
+
+      <!-- Niveau laser – 6e (loué) -->
+      <g class="tool-pin" style="cursor:pointer" onclick="showPin('📐 Niveau laser rotatif','6e arrondissement','18 €/jour','Actuellement loué','#C8D8B0')">
+        <circle cx="228" cy="250" r="13" fill="#C8D8B0" opacity=".18"/>
+        <path d="M228,233 C222,233 216,239 216,246 C216,255 228,268 228,268 C228,268 240,255 240,246 C240,239 234,233 228,233Z" fill="#C8D8B0" stroke="#fff" stroke-width="1"/>
+        <text x="228" y="249" text-anchor="middle" font-size="9">📐</text>
+      </g>
+
+      <!-- Animation pulse sur pins dispo -->
+      <circle cx="346" cy="194" r="16" fill="none" stroke="#E8602C" stroke-width="1.5" opacity=".4">
+        <animate attributeName="r" values="13;20;13" dur="2.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".4;0;.4" dur="2.5s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="260" cy="167" r="16" fill="none" stroke="#E8602C" stroke-width="1.5" opacity=".4">
+        <animate attributeName="r" values="13;20;13" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values=".4;0;.4" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+
+    <!-- Légende -->
+    <div class="map-overlay">
+      <h4>Légende</h4>
+      <div class="map-legend-item"><div class="legend-dot" style="background:var(--terracotta)"></div> Disponible maintenant</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:var(--sage)"></div> Disponible cette semaine</div>
+      <div class="map-legend-item"><div class="legend-dot" style="background:var(--pale)"></div> Actuellement loué</div>
+      <div style="margin-top:.8rem;padding-top:.8rem;border-top:1px solid rgba(200,216,176,.12);font-size:.7rem;color:rgba(200,216,176,.35);">Cliquez sur un 📍 pour les détails</div>
+    </div>
+
+    <!-- Popup outil -->
+    <div id="pinPopup" style="display:none;position:absolute;bottom:1.5rem;right:1.5rem;background:rgba(26,46,26,.96);border:1px solid rgba(200,216,176,.2);border-radius:12px;padding:1.1rem 1.3rem;min-width:210px;backdrop-filter:blur(10px);z-index:10;">
+      <div id="popupName" style="font-weight:700;color:var(--pale);font-size:.92rem;margin-bottom:.3rem;"></div>
+      <div id="popupArr"  style="font-size:.72rem;color:rgba(200,216,176,.5);margin-bottom:.6rem;"></div>
+      <div id="popupPrice" style="font-weight:700;color:var(--terracotta);font-size:1rem;margin-bottom:.25rem;"></div>
+      <div id="popupDispo" style="font-size:.72rem;font-weight:600;margin-bottom:.7rem;"></div>
+      <button onclick="document.getElementById('pinPopup').style.display='none'" style="background:none;border:none;color:rgba(200,216,176,.35);font-size:.72rem;cursor:pointer;">✕ Fermer</button>
+    </div>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:.6rem;margin-top:1rem;font-size:.82rem;color:var(--text-muted);">
+    <span style="background:rgba(232,96,44,.1);color:var(--terracotta);padding:.2rem .7rem;border-radius:4px;font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;">📍 Zone couverte</span>
+    Paris intra-muros (75001 – 75020) · Extension petite couronne prévue courant 2026
+  </div>
 </section>
 
 <!-- IMPACT -->
@@ -667,7 +795,6 @@
   <span id="toastMsg">Réservation confirmée !</span>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
   /* DATA */
   const tools = [
@@ -741,168 +868,18 @@
     });
   }, { threshold: .3 }).observe(document.querySelector('.stats-bar'));
 
-  /* ── INTERACTIVE PARIS MAP ── */
-  (function initParisMap() {
-    const parisMap = L.map('bigMap', {
-      center: [48.857, 2.347],
-      zoom: 12,
-      minZoom: 11,
-      maxZoom: 16,
-      zoomControl: false
-    });
-
-    L.control.zoom({ position: 'bottomright' }).addTo(parisMap);
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      subdomains: 'abcd',
-      maxZoom: 19,
-      attribution: '© <a href="https://openstreetmap.org/copyright">OpenStreetMap</a> © <a href="https://carto.com/attributions">CARTO</a>'
-    }).addTo(parisMap);
-
-    // Tool markers (coordinates match real Paris arrondissements)
-    const mapTools = [
-      { id:1, emoji:'🔨', name:'Marteau piqueur SDS+ 1500W', price:12, caution:80,  dispo:true,  lat:48.8630, lng:2.3609, arr:3  },
-      { id:2, emoji:'🏗️', name:'Échafaudage roulant 4 m',    price:35, caution:200, dispo:true,  lat:48.8596, lng:2.3784, arr:11 },
-      { id:3, emoji:'📐', name:'Niveau laser rotatif',        price:18, caution:120, dispo:false, lat:48.8600, lng:2.3477, arr:1  },
-      { id:4, emoji:'⛏️', name:'Bétonière 160 L électrique', price:28, caution:150, dispo:true,  lat:48.8462, lng:2.3508, arr:5  },
-      { id:5, emoji:'🔩', name:'Visseuse à choc 18V',         price:8,  caution:60,  dispo:true,  lat:48.8667, lng:2.3500, arr:2  },
-      { id:6, emoji:'🏋️', name:'Palan électrique 500 kg',   price:45, caution:300, dispo:true,  lat:48.8636, lng:2.3979, arr:20 },
-    ];
-
-    function mkIcon(dispo, emoji) {
-      const color = dispo ? '#E8602C' : '#C8D8B0';
-      const shadow = dispo ? 'rgba(232,96,44,.6)' : 'rgba(200,216,176,.4)';
-      return L.divIcon({
-        className: '',
-        html: `<div style="width:38px;height:38px;background:${color};border-radius:50% 50% 50% 0;
-          transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;
-          box-shadow:0 4px 18px ${shadow};border:2px solid rgba(255,255,255,.22)">
-          <span style="transform:rotate(45deg);display:block;font-size:1rem;line-height:1">${emoji}</span>
-        </div>`,
-        iconSize: [38, 38],
-        iconAnchor: [19, 44],
-        popupAnchor: [0, -50]
-      });
-    }
-
-    mapTools.forEach(t => {
-      L.marker([t.lat, t.lng], { icon: mkIcon(t.dispo, t.emoji) })
-        .bindPopup(`
-          <div class="mp-wrap">
-            <span class="mp-badge ${t.dispo ? 'mp-dispo' : 'mp-loue'}">${t.dispo ? 'Disponible' : 'Loué'}</span>
-            <div class="mp-name">${t.emoji} ${t.name}</div>
-            <div class="mp-price">${t.price} €/jour · Caution ${t.caution} €</div>
-            ${t.dispo ? `<button class="mp-btn" onclick="location.href='tool-detail.html?id=${t.id}'">Voir le détail →</button>` : ''}
-          </div>
-        `, { className: 'port-popup', maxWidth: 240, minWidth: 200 })
-        .addTo(parisMap);
-    });
-
-    // Arrondissements containing tools
-    const arrWithTools = new Set([1, 2, 3, 5, 11, 20]);
-
-    // Legend control
-    const legend = L.control({ position: 'topleft' });
-    legend.onAdd = function() {
-      const div = L.DomUtil.create('div', 'map-legend-ctrl');
-      div.innerHTML = `
-        <div class="mlc-title">Légende</div>
-        <div class="mlc-row"><span class="mlc-dot" style="background:#E8602C"></span>Disponible maintenant</div>
-        <div class="mlc-row"><span class="mlc-dot" style="background:#4A7C59"></span>Arrondissement avec outils</div>
-        <div class="mlc-row"><span class="mlc-dot" style="background:#C8D8B0;opacity:.65"></span>Actuellement loué</div>
-      `;
-      return div;
-    };
-    legend.addTo(parisMap);
-
-    // Arrondissement info banner (bottom of map)
-    const infoCtrl = L.control({ position: 'bottomleft' });
-    infoCtrl.onAdd = function() {
-      const div = L.DomUtil.create('div', '');
-      div.id = 'arr-info-ctrl';
-      div.style.cssText = 'background:rgba(26,46,26,.92);border:1px solid rgba(200,216,176,.15);border-radius:10px;padding:.65rem 1rem;font-family:Inter,sans-serif;font-size:.8rem;color:rgba(200,216,176,.65);pointer-events:none;backdrop-filter:blur(8px);transition:all .2s;min-width:180px;display:none';
-      return div;
-    };
-    infoCtrl.addTo(parisMap);
-
-    function showArrInfo(n, toolCount) {
-      const el = document.getElementById('arr-info-ctrl');
-      if (!el) return;
-      const suffix = n === 1 ? 'er' : 'e';
-      el.style.display = 'block';
-      el.innerHTML = toolCount > 0
-        ? `<span style="color:var(--pale);font-weight:600">${n}${suffix} arrondissement</span><br>
-           <span style="color:#4A7C59">🔧 ${toolCount} outil${toolCount > 1 ? 's' : ''} disponible${toolCount > 1 ? 's' : ''}</span>`
-        : `<span style="color:var(--pale);font-weight:600">${n}${suffix} arrondissement</span><br>
-           <span>Aucun outil dans ce secteur</span>`;
-    }
-    function hideArrInfo() {
-      const el = document.getElementById('arr-info-ctrl');
-      if (el) el.style.display = 'none';
-    }
-
-    // Load Paris arrondissements GeoJSON
-    fetch('https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/arrondissements/exports/geojson?lang=fr')
-      .then(r => { if (!r.ok) throw new Error('GeoJSON unavailable'); return r.json(); })
-      .then(data => {
-        L.geoJSON(data, {
-          style: f => {
-            const n = +f.properties.c_ar;
-            return {
-              fillColor: arrWithTools.has(n) ? 'rgba(74,124,89,0.28)' : 'rgba(26,46,26,0.48)',
-              fillOpacity: 1,
-              color: 'rgba(200,216,176,0.28)',
-              weight: 1.5
-            };
-          },
-          onEachFeature: (f, layer) => {
-            const n = +f.properties.c_ar;
-            const toolCount = mapTools.filter(t => t.arr === n && t.dispo).length;
-
-            // Permanent arrondissement number label
-            layer.bindTooltip(`${n}`, {
-              permanent: true,
-              direction: 'center',
-              className: 'arr-label-tt',
-              opacity: 1
-            });
-
-            layer.on({
-              mouseover(e) {
-                e.target.setStyle({
-                  fillColor: arrWithTools.has(n) ? 'rgba(74,124,89,0.52)' : 'rgba(74,124,89,0.22)',
-                  color: 'rgba(200,216,176,.65)',
-                  weight: 2
-                });
-                const tt = layer.getTooltip();
-                if (tt && tt.getElement()) tt.getElement().style.color = 'rgba(200,216,176,.9)';
-                showArrInfo(n, toolCount);
-              },
-              mouseout(e) {
-                e.target.setStyle({
-                  fillColor: arrWithTools.has(n) ? 'rgba(74,124,89,0.28)' : 'rgba(26,46,26,0.48)',
-                  color: 'rgba(200,216,176,0.28)',
-                  weight: 1.5
-                });
-                const tt = layer.getTooltip();
-                if (tt && tt.getElement()) tt.getElement().style.color = '';
-                hideArrInfo();
-              },
-              click() {
-                if (arrWithTools.has(n)) {
-                  document.getElementById('outils').scrollIntoView({ behavior: 'smooth' });
-                  showToast('📍', `Outils disponibles dans le ${n}${n === 1 ? 'er' : 'e'} arrondissement`);
-                }
-              }
-            });
-          }
-        }).addTo(parisMap);
-      })
-      .catch(() => {
-        // Tiles + markers still display without arrondissement borders
-        console.info('PORT & REUSE: GeoJSON arrondissements non chargé (mode hors-ligne ?)');
-      });
-  })();
+  /* MAP PARIS — popup au clic sur un pin */
+  function showPin(name, arr, price, dispo, color) {
+    document.getElementById('popupName').textContent  = name;
+    document.getElementById('popupArr').textContent   = '📍 ' + arr;
+    document.getElementById('popupPrice').textContent = price;
+    const d = document.getElementById('popupDispo');
+    d.textContent = dispo;
+    d.style.color = dispo === 'Disponible' ? 'var(--sage-light)'
+                  : dispo === 'Actuellement loué' ? 'var(--pale)'
+                  : 'var(--terracotta)';
+    document.getElementById('pinPopup').style.display = 'block';
+  }
 
   /* EARNINGS CALCULATOR */
   function updateEarnings() {
@@ -1081,25 +1058,6 @@
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').style.boxShadow = scrollY > 20 ? '0 4px 24px rgba(0,0,0,.3)' : '';
   });
-
-  /* LEND SECTION — auth gate */
-  (function checkLendAuth() {
-    const session = JSON.parse(localStorage.getItem('pr_session') || 'null');
-    const overlay = document.getElementById('lendLockOverlay');
-    if (!overlay) return;
-    if (session) {
-      overlay.style.display = 'none';
-    } else {
-      overlay.style.display = 'flex';
-      // Prevent the form from being submitted via keyboard while locked
-      document.getElementById('lendForm').addEventListener('submit', e => {
-        if (document.getElementById('lendLockOverlay').style.display !== 'none') {
-          e.preventDefault();
-          window.location.href = 'auth.html';
-        }
-      }, true);
-    }
-  })();
 </script>
 </body>
 </html>
